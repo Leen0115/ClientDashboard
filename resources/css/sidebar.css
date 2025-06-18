@@ -1,0 +1,229 @@
+body {
+    overflow-x: hidden;
+}
+
+.navbar,
+.content {
+    margin-left: 250px;
+}
+
+.content {
+    padding: 20px;
+}
+
+/* ========== Sidebar ========== */
+.sidebar {
+    overflow-y: auto;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    padding-top: 20px;
+    z-index: 1;
+    box-shadow: 0 4px 25px 0 hsla(21, 6%, 51%, 0.2) !important;
+}
+html[dir="rtl"] .sidebar {
+    left: auto !important;
+    right: 0 !important;
+}
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+
+/* ========== Scrollbar ========== */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #6a1b9a;
+}
+
+*::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* ========== Nav Links ========== */
+.nav-link {
+    display: flex;
+    align-items: center;
+    text-align: start;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Inter", sans-serif;
+    color: #333;
+    line-height: 100%;
+    transition: all 0.3s ease-in-out;
+    /* background-color: lightgray; */
+}
+@font-face {
+    font-family: 'Almarai';
+    src: url('/public/fonts/Almarai-Regular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html[dir="rtl"] .nav-link {
+    font-family: 'Almarai';
+    font-weight: 400;
+}
+.nav-link i {
+    margin-inline-end: 5px;
+}
+
+
+/* Specific Types */
+.nav-link.parent {
+    font-size: 11px;
+    color: #6b6b6b;
+    /* color: #8992ac; */
+}
+
+.nav-link.child.no-children,
+.nav-link.child.has-children {
+    font-size: 14px;
+    /* color: #6e768e; */
+
+    color: #515151;
+}
+html[dir="rtl"] .nav-link.child.no-children,
+html[dir="rtl"] .nav-link.child.has-children {
+    font-size: 13px;
+    color: #515151;
+    /* color: #494848; */
+}
+/* Active State */
+.nav-link.active {
+    background-color: #f8f9fa;
+    color: #6a1b9a !important;
+    font-weight: bold;
+    fill: #6a1b9a;
+}
+
+/* ========== Nav Icons ========== */
+.nav-link i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+html[dir="rtl"] .nav-link i {
+    margin-right: 0 !important;
+    margin-left: 4px !important;
+}
+html[dir="rtl"] .navbar,
+html[dir="rtl"] .content {
+    margin-left: 0 !important;
+    margin-right: 250px !important;
+}
+
+.nav-link i svg {
+    transition: fill 0.15s ease-in-out;
+}
+
+/* ========== Hover Effects ========== */
+.nav-item .child:hover,
+.nav-item .child.has-children:hover {
+    background-color: #7514c5;
+    color: #fff!important;
+    fill: #fff!important;
+}
+
+/* ========== Arrow Icon ========== */
+.arrow-icon {
+    position: absolute;
+    right: 26px;
+    transition: 0.15s ease-in-out;
+}
+html[dir="rtl"] .arrow-icon {
+    left: 26px !important;
+    right: auto !important;
+    
+}
+[dir="rtl"] .arrow-icon {
+    transform: rotate(180deg);
+}
+.arrow-icon.rotate {
+    transform: rotate(90deg);
+}
+
+.support-arrow-icon{
+   transition: 0.15s ease-in-out;
+
+}
+
+
+html[dir="rtl"] .support-arrow-icon {
+    left: 26px !important;
+    right: auto !important;
+    
+}
+[dir="rtl"] .support-arrow-icon {
+    transform: rotate(180deg);
+}
+.support-arrow-icon.rotate {
+    transform: rotate(90deg); 
+
+}
+/* ========== Breadcrumbs ========== */
+/* .breadcrumb-item a,
+ol a {
+    color: #000000;
+    text-decoration: none;
+} */
+.breadcrumb-item{
+    color: #595C5F;
+}
+/* ========== Page Sidebar Border ========== */
+.page-sidebar-border {
+    border: 1px solid #6a1b9a !important;
+}
+
+.page-sidbar-item a.active {
+    background-color: rgba(108, 99, 255, 0.1);
+    color: #6a1b9a;
+    font-weight: bold;
+}
+.footer-text {
+    font-size: 11px;
+}
+
+.support-section {
+    font-size: 13px;
+    box-shadow: 0 0 0 1px #EBEEF4 ;
+    border-radius: 5px;
+    color: #515151 !important;                      
+}
+
+.custom-support-btn,
+.custom-support-btn:hover,
+.custom-support-btn:focus,
+.custom-support-btn:active {
+    border: 1px solid #EBEEF4 !important;
+    color: #515151 !important;                      
+    background-color: #ffffff !important;
+    border-radius: 5px  !important;
+    /* width: 190px !important; */
+    height: 39.2px !important;
+
+}
+.support-section-list {
+    color: #515151 !important;   
+                       
+}
