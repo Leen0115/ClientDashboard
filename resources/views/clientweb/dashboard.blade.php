@@ -77,41 +77,37 @@
                     </p>
                 </div>
                 <div class="d-flex align-items-center">
-                    <!-- input التاريخ -->
+                    <!-- التاريخ -->
    <div class="position-relative me-3" style="width:190px;">
     <!-- أيقونة التقويم -->
     <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 14px; transform: translateY(-50%); color: #888;"></i>
-    
-    <!-- سهم ▼ -->
+    <!-- سهم -->
     <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
-    
-    <!-- input -->
+    <!-- date range -->
     <input type="text" id="daterange" 
         class="form-control form-control-sm pe-5 ps-4 text-end" 
         placeholder="اختر نطاق التاريخ"
         style="background-color: #F6F7F9; cursor: pointer;" readonly />
 </div>
-
-                    <!-- إجمالي الطلبات -->
-                    <div class="text-center p-2 rounded border " style="background-color: #F6F7F9; min-width: 100px; margin-right:10px;">
-                        <div class="rounded text-muted small">إجمالي الطلبات /الرحلات</div>
-                        <div class="fw-bold fs-5">12,127</div>
-                    </div>
-                </div>
-            </div>
-            <canvas id="ordersChart" style="width:1600px;height:300px"></canvas>
+   <!-- إجمالي الطلبات -->
+     <div class="text-center p-2 rounded border " style="background-color: #F6F7F9; min-width: 100px; margin-right:10px;">
+         <div class="rounded text-muted small">إجمالي الطلبات/الرحلات</div>
+             <div class="fw-bold fs-5">12,127</div>
+     </div>
+     </div>
+     </div>
+        <canvas id="ordersChart" style="width:1600px;height:300px"></canvas>
         </div>
     </div>
 </div>
-
 @endsection
-
 @push('styles')
 <style>
      body, * {
         font-family: 'Almrai', sans-serif !important;
     }
-    .icon-style { font-size: 2rem; }
+    .icon-style { 
+        font-size: 2rem; }
     .card-custom {
         background-color: #ffffff;
         box-shadow: 0 0 10px rgba(0,0,0,0.05);
@@ -139,7 +135,6 @@
     }
 </style>
 @endpush
-
 @push('scripts')
 <script>
     $(function () {
@@ -189,14 +184,12 @@
         },
         options: {
             responsive: true,
-            
             plugins: {
                 legend: { display: false },
                 tooltip: {
     enabled: false, // نعطل التولتيب العادي
     external: function(context) {
         let tooltipModel = context.tooltip;
-
         // التحقق أو إنشاء العنصر
         let tooltipEl = document.getElementById('custom-tooltip');
         if (!tooltipEl) {
@@ -205,32 +198,26 @@
             tooltipEl.innerHTML = '<div class="custom-tooltip-inner shadow-sm"></div>';
             document.body.appendChild(tooltipEl);
         }
-
         // إذا ما فيه بيانات نخفي التولتيب
         if (tooltipModel.opacity === 0) {
             tooltipEl.style.opacity = 0;
             return;
         }
-
         const dataPoint = tooltipModel.dataPoints[0];
         const value = dataPoint.formattedValue;
         const label = dataPoint.label;
-
         const date = new Date(`${label} 2025`);
         const weekday = date.toLocaleDateString('ar-EG', { weekday: 'long' });
         const day = date.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' });
-
         tooltipEl.querySelector('.custom-tooltip-inner').innerHTML = `
             <div style="padding:7px 9px; background:white; border:1px solid #eee; border-radius:10px; min-width:40px;">
                 <div class="d-flex align-items-center mb-1">
                     <i class="bi-bar-chart" style="color:#7514C0; font-size: 16px; margin-left: 6px;margin-top:-7px;"></i>
-                    <span style="font-weight:bold; color:#7514C0;font-size: 10px;">إجمالي الطلبات</span>
+                    <span style="font-weight:bold; color:gray;font-size: 10px;">إجمالي الطلبات</span>
                 </div>
                 <div style="font-size: 15px; font-weight: bold; text-align:center; color:#7514C0;">${value}</div>
                 <div style="font-size:10px; color:gray; text-align:center;">${weekday}، ${day}</div>
-            </div>
-        `;
-
+            </div>`;
         const position = context.chart.canvas.getBoundingClientRect();
         tooltipEl.style.opacity = 1;
         tooltipEl.style.position = 'absolute';
@@ -260,5 +247,4 @@
         }
     });
 </script>
-
 @endpush
