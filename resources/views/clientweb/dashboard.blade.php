@@ -5,9 +5,10 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<div class="row mt-4">
+<h2 class="mb-4" style="color:#00000;">لوحة البيانات</h2>
+<div class="row mt-3">
     <!-- بطاقة 1: البحث -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-2">
         <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
             <div>
                 <div class="d-flex align-items-center">
@@ -26,7 +27,7 @@
     </div>
 
     <!-- بطاقة 2: في رحلة -->
-    <div class="col-md-4 mt-6 mb-4">
+    <div class="col-md-4 mb-2">
         <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
             <div>
                 <div class="d-flex align-items-center">
@@ -45,7 +46,7 @@
     </div>
 
     <!-- بطاقة 3: مكتمل -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-3">
         <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
             <div>
                 <div class="d-flex align-items-center">
@@ -65,12 +66,11 @@
 </div>
 
 <!-- نظرة عامة على إجمالي الطلبات -->
-<div class="row mt-1">
     <div class="col-12">
 <div class="p-3 rounded shadow-sm" style="background-color: #fff;min-height: 400px;">
-    <div class="d-flex justify-content-between align-items-start mb-3">
+    <div class="d-flex justify-content-between align-items-start mb-1">
                 <div>
-                    <h5 class="fw-bold mb-1">
+                    <h5 class="fw-bold mb-1 mt-2">
                         <i class="bi bi-box-seam ms-2"></i>نظرة عامة على إجمالي الطلبات</h5>
                     <p class="text-muted small mb-0">
                         هذا المخطط يعرض العدد الإجمالي للطلبات على مدار الوقت، ويساعدك على تتبع الاتجاهات والفترات النشطة.
@@ -78,33 +78,105 @@
                 </div>
                 <div class="d-flex align-items-center">
                     <!-- التاريخ -->
-   <div class="position-relative me-3" style="width:190px;">
+   <div class="position-relative me-3" style="width:220px;">
     <!-- أيقونة التقويم -->
-    <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 14px; transform: translateY(-50%); color: #888;"></i>
+    <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
     <!-- سهم -->
     <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
     <!-- date range -->
     <input type="text" id="daterange" 
         class="form-control form-control-sm pe-5 ps-4 text-end" 
         placeholder="اختر نطاق التاريخ"
-        style="background-color: #F6F7F9; cursor: pointer;" readonly />
-</div>
+        style="background-color: #F6F7F9; cursor: pointer;" readonly /></div>
    <!-- إجمالي الطلبات -->
-     <div class="text-center p-2 rounded border " style="background-color: #F6F7F9; min-width: 100px; margin-right:10px;">
+     <div class="text-center p-3 rounded border " style="background-color: #F6F7F9; min-width: 180px; margin-right:10px;">
          <div class="rounded text-muted small">إجمالي الطلبات/الرحلات</div>
-             <div class="fw-bold fs-5">12,127</div>
+             <div class="fw-bold fs-5"style="color: #515151">12,127</div>
      </div>
      </div>
      </div>
         <canvas id="ordersChart" style="width:1600px;height:300px"></canvas>
         </div>
     </div>
+    <div class="row mt-3">
+    <!-- قسم تحليلات الموردين -->
+<div class="col-md-6">
+    <div class="p-3 rounded shadow-sm equal-height-box" style="background-color: #fff;">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+            <!-- العنوان والنص -->
+            <div>
+                <h5 class="fw-bold mb-1">
+                    <i class="bi bi-diagram-3-fill ms-2"></i>تحليلات الموردين
+                </h5>
+                <p class="text-muted small mb-0">
+                    هذا المخطط يعرض العدد الإجمالي للطلبات من قبل الموردين خلال الفترة المحددة، مما يساعد على تتبع الاتجاهات وفترات الذروة.
+                </p>
+            </div>
+            <!-- التاريخ والبوكسين على اليسار -->
+            <div style="min-height: 200px;">
+                <div class="position-relative mb-2" style="width: 227px;">
+                    <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
+                    <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
+                   <input type="text" id="supplier-daterange"
+    class="form-control form-control-sm pe-5 ps-4 text-end"
+    placeholder="اختر نطاق التاريخ"
+    style="background-color: #F6F7F9; cursor: pointer;" readonly>
+                </div>
+                <div class="d-flex gap-2" style="width: 227px;">
+                    <div class="text-center p-2 rounded border flex-fill" style="background-color: #F6F7F9; min-width: 0;">
+                        <div class="text-muted small">تم الطلب</div>
+                        <div class="fw-bold fs-5"style="color: #515151">12,127</div>
+                    </div>
+                    <div class="text-center p-2 rounded border flex-fill" style="background-color: #F6F7F9; min-width: 0;">
+                        <div class="text-muted small">مكتملة</div>
+                        <div class="fw-bold fs-5"style="color: #515151">11,972</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- الرسم البياني -->
+        <canvas id="supplierChart" height="500" width="750" class="mt-4"></canvas>
+    </div>
+</div>
+    <!-- قسم تحليلات العملاء -->
+  <div class="col-md-6">
+  <div class="p-3 rounded shadow-sm equal-height-box" style="background-color: #fff;">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+      <!-- العنوان والنص -->
+      <div>
+        <h5 class="fw-bold mb-1">
+          <i class="bi bi-people-fill ms-2"></i>تحليلات العملاء
+        </h5>
+        <p class="text-muted small mb-0">
+          هذا المخطط يعرض العدد الإجمالي للطلبات من قبل العملاء خلال الفترة المحددة، مما يساعد على تتبع النشاط.
+        </p>
+      </div>
+      <!-- التاريخ وإجمالي الطلبات على اليسار -->
+      <div style="min-height: 200px;">
+        <div class="position-relative my-2" style="width: 227px;">
+          <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
+          <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
+         <input type="text" id="client-daterange"
+            class="form-control form-control-sm pe-5 ps-4 text-end"
+            placeholder="اختر نطاق التاريخ"
+            style="background-color: #F6F7F9; cursor: pointer;" readonly>
+                </div>
+        <div class="text-center p-2 rounded border mb-3" style="background-color: #F6F7F9;width: 227px;">
+          <div class="text-muted small">إجمالي الطلبات</div>
+          <div class="fw-bold fs-5" style="color: #515151;">12,127</div>
+        </div>
+      </div>
+    </div>
+    <canvas id="clientChart" height="500" width="750" class="mt-4"></canvas>
+  </div>
+</div>
+</div>
 </div>
 @endsection
 @push('styles')
 <style>
      body, * {
-        font-family: 'Almrai', sans-serif !important;
+        font-family: 'Almrai', sans-serif;
     }
     .icon-style { 
         font-size: 2rem; }
@@ -115,8 +187,8 @@
         padding: 20px;
     }
     .card-text-small {
-        font-size: 12px;
-        margin-left:10px;
+        font-size: 10px;
+        margin-left:50px;
         color: #515151;
     }
     .card-text {
@@ -133,39 +205,150 @@
     .move-rate-left {
         margin-left: 9px; 
     }
+ #daterange {
+    padding-right: 34px !important; 
+    font-size: 13px;
+}
+ #client-daterange {
+    padding-right: 34px !important; 
+    font-size: 13px;
+}
+ #supplier-daterange {
+    padding-right: 34px !important; 
+    font-size: 13px;
+}
+.equal-height-box {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 </style>
 @endpush
 @push('scripts')
 <script>
     $(function () {
         $('#daterange').val('');
-
         $('#daterange').daterangepicker({
-            opens: 'left',
-            autoUpdateInput: false,
-            locale: {
-                format: 'YYYY-MM-DD',
-                applyLabel: 'تطبيق',
-                cancelLabel: 'إلغاء',
-                customRangeLabel: 'نطاق مخصص',
-                daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
-                monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-                    'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
-                firstDay: 6
-            },
-            ranges: {
-                'اليوم': [moment(), moment()],
-                'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
-                'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
-                'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
-                'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        }, function (start, end, label) {
-            $('#daterange').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
-        });
+    opens: 'left',
+    autoUpdateInput: false,
+    locale: {
+        format: 'MMM D, YYYY',
+        applyLabel: 'تطبيق',
+        cancelLabel: 'إلغاء',
+        customRangeLabel: 'نطاق مخصص',
+        daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+        monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+            'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+        firstDay: 6
+    },
+    ranges: {
+        'اليوم': [moment(), moment()],
+        'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
+        'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
+        'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
+        'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
+}, function (start, end, label) {
+    let formatted = start.format('MMM D, YYYY');
+    let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
+    
+    // تحديث الحقل بناءً على الاختيار
+    if (label === 'اليوم' || label === 'أمس') {
+        $('#daterange').val(formatted);
+    } else {
+        $('#daterange').val(formattedRange);
+    }
+});
+
+// نجبره يحدث التاريخ يدويًا أول مرة ينفتح
+$('#daterange').on('show.daterangepicker', function(ev, picker) {
+    if (!$(this).val()) {
+        const today = moment().format('MMM D, YYYY');
+        $(this).val(today);
+    }
+
+
+    
+});
+$('#supplier-daterange').daterangepicker({
+        opens: 'left',
+        autoUpdateInput: false,
+        locale: {
+            format: 'MMM D, YYYY',
+            applyLabel: 'تطبيق',
+            cancelLabel: 'إلغاء',
+            customRangeLabel: 'نطاق مخصص',
+            daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+                'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+            firstDay: 6
+        },
+        ranges: {
+            'اليوم': [moment(), moment()],
+            'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
+            'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
+            'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
+            'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, function (start, end, label) {
+        let formatted = start.format('MMM D, YYYY');
+        let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
+        if (label === 'اليوم' || label === 'أمس') {
+            $('#supplier-daterange').val(formatted);
+        } else {
+            $('#supplier-daterange').val(formattedRange);
+        }
     });
 
+    // تعيين التاريخ الافتراضي عند أول فتح
+    $('#supplier-daterange').on('show.daterangepicker', function(ev, picker) {
+        if (!$(this).val()) {
+            const today = moment().format('MMM D, YYYY');
+            $(this).val(today);
+        }
+    });
+    $('#client-daterange').daterangepicker({
+        opens: 'left',
+        autoUpdateInput: false,
+        locale: {
+            format: 'MMM D, YYYY',
+            applyLabel: 'تطبيق',
+            cancelLabel: 'إلغاء',
+            customRangeLabel: 'نطاق مخصص',
+            daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+                'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+            firstDay: 6
+        },
+        ranges: {
+            'اليوم': [moment(), moment()],
+            'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
+            'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
+            'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
+            'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, function (start, end, label) {
+        let formatted = start.format('MMM D, YYYY');
+        let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
+        if (label === 'اليوم' || label === 'أمس') {
+            $('#client-daterange').val(formatted);
+        } else {
+            $('#client-daterange').val(formattedRange);
+        }
+    });
+
+    // تعيين التاريخ الافتراضي عند أول فتح
+    $('#client-daterange').on('show.daterangepicker', function(ev, picker) {
+        if (!$(this).val()) {
+            const today = moment().format('MMM D, YYYY');
+            $(this).val(today);
+        }
+    });
+    });
     const ctx = document.getElementById('ordersChart').getContext('2d');
     const ordersChart = new Chart(ctx, {
         type: 'bar',
@@ -246,5 +429,98 @@
             }
         }
     });
+     const supplierChartCtx = document.getElementById('supplierChart').getContext('2d');
+
+    const supplierChart = new Chart(supplierChartCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Rodud', 'Al Majdouie', 'Supplier A', 'Supplier B', 'Supplier C'],
+            datasets: [
+                {
+                    label: 'تم الطلب',
+                    data: [4000, 3000, 2000, 3200, 900],
+                    backgroundColor: '#7514C0',
+                    borderRadius: 7,
+                    barThickness: 16,
+                },
+                {
+                    label: 'مكتملة',
+                    data: [3900, 2700, 1800, 1200, 800],
+                    backgroundColor: '#88C4A3',
+                    borderRadius: 7,
+                    barThickness: 16,
+                }
+            ]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: { family: 'Almarai', size: 12 },
+                        color: '#515151',
+                        usePointStyle: true,     
+                        pointStyle: 'circle', 
+                        padding: 50
+                      
+                        
+                    }
+
+                }
+            },
+            scales: {
+            x: {
+            display: false
+           
+            },
+            y: {
+                grid: { display: true },
+                ticks: {
+                    font: { family: 'Almarai', size: 12 },
+                    color: '#515151'
+                }
+                }
+            }
+        }
+    });
+    const clientChartCtx = document.getElementById('clientChart').getContext('2d');
+    const clientChart = new Chart(clientChartCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Rodud', 'Al Majdouie', 'Supplier A', 'Supplier B', 'Supplier C'],
+        datasets: [
+            {
+        
+                data: [4000, 3000, 2000, 3200, 900],
+                backgroundColor: '#7514C0',
+                borderRadius: 7,
+                barThickness: 16,
+            }
+        ]
+    },
+    options: {
+        indexAxis: 'y', // يخلي الشارت أفقي
+        responsive: true,
+        plugins: {
+            legend: {
+                display:false
+            }
+        },
+        scales: {
+            x: {
+            display: false
+            },
+            y: {
+                grid: { display: true },
+                ticks: {
+                    font: { family: 'Almarai', size: 12 },
+                    color: '#515151'
+                }
+            }
+        }
+    }
+});
 </script>
 @endpush
