@@ -202,7 +202,7 @@
     </div>
 
     <!-- جدول أعلى المدن والعملاء -->
-    <div class="table-responsive mt-4" style="width: 50%; min-width: 320px;">
+    <div class="table-responsive mt-4" style="width: 45%; min-width: 320px;">
 <table class="table top-table">
   <thead>
     <tr>
@@ -216,8 +216,8 @@
       <td><span class="rank-circle rank-1">1</span> الرياض</td>
       <td>1245</td>
       <td>
-        <span class="client-pill">مصنع الحمراء - 54</span>
-        <span class="client-pill">سابك - 52</span>
+        <span class="client-pill">مصنع الحمراء - 54</span><br>
+        <span class="client-pill">سابك - 52</span><br>
         <span class="client-pill">ABC - 47</span>
       </td>
     </tr>
@@ -225,8 +225,8 @@
       <td><span class="rank-circle rank-2">2</span> جدة</td>
       <td>980</td>
       <td>
-        <span class="client-pill">مصنع الحمراء - 54</span>
-        <span class="client-pill">سابك - 45</span>
+        <span class="client-pill">مصنع الحمراء - 54</span><br>
+        <span class="client-pill">سابك - 45</span><br>
         <span class="client-pill">XYZ - 23</span>
       </td>
     </tr>
@@ -234,8 +234,8 @@
       <td><span class="rank-circle rank-3">3</span> الدمام</td>
       <td>765</td>
       <td>
-        <span class="client-pill">مياه رفا - 67</span>
-        <span class="client-pill">مصنع أ - 54</span>
+        <span class="client-pill">مياه رفا - 67</span><br>
+        <span class="client-pill">مصنع أ - 54</span><br>
         <span class="client-pill">XYZ - 23</span>
       </td>
     </tr>
@@ -243,8 +243,8 @@
       <td>المدينة المنورة</td>
       <td>654</td>
       <td>
-        <span class="client-pill">مصنع الحمراء - 54</span>
-        <span class="client-pill">سابك - 52</span>
+        <span class="client-pill">مصنع الحمراء - 54</span><br>
+        <span class="client-pill">سابك - 52</span><br>
         <span class="client-pill">ABC - 47</span>
       </td>
     </tr>
@@ -252,8 +252,8 @@
       <td>مكة</td>
       <td>543</td>
       <td>
-        <span class="client-pill">مصنع الحمراء - 54</span>
-        <span class="client-pill">سابك - 45</span>
+        <span class="client-pill">مصنع الحمراء - 54</span><br>
+        <span class="client-pill">سابك - 45</span><br>
         <span class="client-pill">XYZ - 23</span>
       </td>
     </tr>
@@ -310,8 +310,8 @@
 }
 
   .top-table {
-    font-family: 'Almarai', sans-serif;
-    font-size: 14px;
+  font-family: 'Almarai', sans-serif;
+  font-size: 14px;
   border-right: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
   border-collapse: separate;
@@ -319,9 +319,27 @@
    border-radius: 10px; 
   overflow: hidden; 
   }
+.top-table th,
+.top-table td {
+  text-align: center;         /* توسيط النص */
+  vertical-align: middle;     /* توسيط عمودي */
+  font-size: 15px;            /* حجم خط موحد */
+  padding: 14px 16px;         /* تباعد داخلي أكبر */
+  border-top: 1px solid #eee;
+}
+
 .top-table th {
   background-color: #250059;
-    color: #fff;
+  color: #fff;
+  font-weight: bold;
+}
+
+.top-table tr {
+  transition: background 0.2s;
+}
+
+.top-table tbody tr:hover {
+  background-color: #f6f6fa; /* لون خفيف عند المرور */
 }
 .top-table tbody tr:first-child td,
 .top-table tbody tr:first-child th {
