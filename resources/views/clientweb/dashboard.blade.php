@@ -101,7 +101,7 @@
     <div class="row mt-3">
     <!-- قسم تحليلات الموردين -->
 <div class="col-md-6">
-    <div class="p-3 rounded shadow-sm equal-height-box" style="background-color: #fff;">
+    <div class="p-3 rounded shadow-sm min-height: 300px;" style="background-color: #fff;">
         <div class="d-flex justify-content-between align-items-start mb-2">
             <!-- العنوان والنص -->
             <div>
@@ -113,8 +113,8 @@
                 </p>
             </div>
             <!-- التاريخ والبوكسين على اليسار -->
-            <div style="min-height: 200px;">
-                <div class="position-relative mb-2" style="width: 227px;">
+            <div style="min-height: 150px;">
+                <div class="position-relative" style="width: 227px;">
                     <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
                     <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
                    <input type="text" id="supplier-daterange"
@@ -122,7 +122,7 @@
     placeholder="اختر نطاق التاريخ"
     style="background-color: #F6F7F9; cursor: pointer;" readonly>
                 </div>
-                <div class="d-flex gap-2" style="width: 227px;">
+                <div class="d-flex gap-2 mt-1" style="width: 227px;">
                     <div class="text-center p-2 rounded border flex-fill" style="background-color: #F6F7F9; min-width: 0;">
                         <div class="text-muted small">تم الطلب</div>
                         <div class="fw-bold fs-5"style="color: #515151">12,127</div>
@@ -135,12 +135,12 @@
             </div>
         </div>
         <!-- الرسم البياني -->
-        <canvas id="supplierChart" height="500" width="750" class="mt-4"></canvas>
+        <canvas id="supplierChart" height="500" width="750"></canvas>
     </div>
 </div>
     <!-- قسم تحليلات العملاء -->
   <div class="col-md-6">
-  <div class="p-3 rounded shadow-sm equal-height-box" style="background-color: #fff;">
+  <div class="p-3 rounded shadow-sm min-height: 600px;" style="background-color: #fff;">
     <div class="d-flex justify-content-between align-items-start mb-2">
       <!-- العنوان والنص -->
       <div>
@@ -152,7 +152,7 @@
         </p>
       </div>
       <!-- التاريخ وإجمالي الطلبات على اليسار -->
-      <div style="min-height: 200px;">
+      <div style="min-height: 150px;">
         <div class="position-relative my-2" style="width: 227px;">
           <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
           <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
@@ -167,9 +167,100 @@
         </div>
       </div>
     </div>
-    <canvas id="clientChart" height="500" width="750" class="mt-4"></canvas>
+    <canvas id="clientChart" height="500" width="750"></canvas>
   </div>
 </div>
+</div>
+<!-- أعلى المدن والعملاء -->
+<div class="col-12 mt-3">
+  <div class="p-3 rounded shadow-sm mb-4" style="background-color: #fff; min-height: 600px;">
+    <div class="d-flex justify-content-between align-items-start flex-wrap">
+      <!-- العنوان والوصف + التاريخ -->
+      <div class="d-flex align-items-center gap-3">
+        <div>
+          <h5 class="fw-bold mb-1">
+            <i class="bi bi-bar-chart-line-fill"></i> أعلى المدن/ مواقع العملاء التي تم التوصيل إليها
+          </h5>
+          <p class="text-muted small"style="max-width: 420px;">
+يعرض هذا الرسم البياني العدد الإجمالي لطلبات الرحلات عبر الزمن، مما يساعدك على تتبّع اتجاهات الطلب وفترات الذروة.</p>
+        </div>
+
+        <!-- فلتر التاريخ -->
+        <div class="position-relative" style="width: 227px; margin-top: -20px;">
+          <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
+          <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
+          <input type="text" id="top-cities-daterange" class="form-control form-control-sm pe-5 ps-4 text-end" placeholder="اختر نطاق التاريخ" style="background-color: #F6F7F9; cursor: pointer;" readonly />
+        </div>
+      </div>
+
+      <!-- التلميح -->
+      <div class="d-flex align-items-center flex-wrap gap-3 mt-3">
+        <small class="text-muted" style="margin-left: 60px; font-size: 14px;">
+          <i class="bi bi-info-circle me-1"></i> مرر المؤشر فوق الخريطة لعرض عدد الطلبات/الرحلات المكتملة إلى المنطقة/المدينة. 
+        </small>
+      </div>
+    </div>
+
+    <!-- جدول أعلى المدن والعملاء -->
+    <div class="table-responsive mt-4" style="width: 50%; min-width: 320px;">
+<table class="table top-table">
+  <thead>
+    <tr>
+      <th>المدينة</th>
+      <th>عدد الطلبات</th>
+      <th>أفضل ٣ عملاء</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="rank-circle rank-1">1</span> الرياض</td>
+      <td>1245</td>
+      <td>
+        <span class="client-pill">مصنع الحمراء - 54</span>
+        <span class="client-pill">سابك - 52</span>
+        <span class="client-pill">ABC - 47</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="rank-circle rank-2">2</span> جدة</td>
+      <td>980</td>
+      <td>
+        <span class="client-pill">مصنع الحمراء - 54</span>
+        <span class="client-pill">سابك - 45</span>
+        <span class="client-pill">XYZ - 23</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="rank-circle rank-3">3</span> الدمام</td>
+      <td>765</td>
+      <td>
+        <span class="client-pill">مياه رفا - 67</span>
+        <span class="client-pill">مصنع أ - 54</span>
+        <span class="client-pill">XYZ - 23</span>
+      </td>
+    </tr>
+    <tr>
+      <td>المدينة المنورة</td>
+      <td>654</td>
+      <td>
+        <span class="client-pill">مصنع الحمراء - 54</span>
+        <span class="client-pill">سابك - 52</span>
+        <span class="client-pill">ABC - 47</span>
+      </td>
+    </tr>
+    <tr>
+      <td>مكة</td>
+      <td>543</td>
+      <td>
+        <span class="client-pill">مصنع الحمراء - 54</span>
+        <span class="client-pill">سابك - 45</span>
+        <span class="client-pill">XYZ - 23</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+  </div>
 </div>
 </div>
 @endsection
@@ -205,24 +296,86 @@
     .move-rate-left {
         margin-left: 9px; 
     }
- #daterange {
-    padding-right: 34px !important; 
+#daterange, #client-daterange, #supplier-daterange , #top-cities-daterange {
+    padding-right: 34px !important;
     font-size: 13px;
 }
- #client-daterange {
-    padding-right: 34px !important; 
+#supplier-tooltip {
+  transition: all 0.1s ease;
+  z-index: 9999;
+}
+#client-tooltip {
+  transition: all 0.1s ease;
+  z-index: 9999;
+}
+
+  .top-table {
+    font-family: 'Almarai', sans-serif;
+    font-size: 14px;
+  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  border-collapse: separate;
+  border-spacing: 0;
+   border-radius: 10px; 
+  overflow: hidden; 
+  }
+.top-table th {
+  background-color: #250059;
+    color: #fff;
+}
+.top-table tbody tr:first-child td,
+.top-table tbody tr:first-child th {
+  color: #333 !important;
+}
+
+  .top-table th,
+  .top-table td {
+    vertical-align: middle;
+    padding: 12px 16px;
+    border-top: 1px solid #eee;
+  }
+  .client-pill {
+    display: inline-block;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    padding: 4px 10px;
+    margin-left: 6px;
     font-size: 13px;
+    color: #444;
+  }
+
+ .rank-circle {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 22px;
+  margin-left: 6px;
+  border: 1px solid #ccc;
 }
- #supplier-daterange {
-    padding-right: 34px !important; 
-    font-size: 13px;
+
+.rank-1 {
+  color: #DAA520;
+  border-color: #DAA520;
+  background-color: #fff8e1;
 }
-.equal-height-box {
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+.rank-2 {
+  color: #888;
+  border-color: #888;
+  background-color: #f2f2f2;
 }
+
+.rank-3 {
+  color: #b87333;
+  border-color: #b87333;
+  background-color: #fff1e5;
+}
+
+
 </style>
 @endpush
 @push('scripts')
@@ -268,9 +421,6 @@ $('#daterange').on('show.daterangepicker', function(ev, picker) {
         const today = moment().format('MMM D, YYYY');
         $(this).val(today);
     }
-
-
-    
 });
 $('#supplier-daterange').daterangepicker({
         opens: 'left',
@@ -349,6 +499,36 @@ $('#supplier-daterange').daterangepicker({
         }
     });
     });
+    $('#top-cities-daterange').daterangepicker({
+    opens: 'left',
+    autoUpdateInput: false,
+    locale: {
+        format: 'MMM D, YYYY',
+        applyLabel: 'تطبيق',
+        cancelLabel: 'إلغاء',
+        customRangeLabel: 'نطاق مخصص',
+        daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+        monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+            'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+        firstDay: 6
+    },
+    ranges: {
+        'اليوم': [moment(), moment()],
+        'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
+        'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
+        'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
+        'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
+}, function (start, end, label) {
+    let formatted = start.format('MMM D, YYYY');
+    let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
+    if (label === 'اليوم' || label === 'أمس') {
+        $('#top-cities-daterange').val(formatted);
+    } else {
+        $('#top-cities-daterange').val(formattedRange);
+    }
+});
     const ctx = document.getElementById('ordersChart').getContext('2d');
     const ordersChart = new Chart(ctx, {
         type: 'bar',
@@ -431,68 +611,124 @@ $('#supplier-daterange').daterangepicker({
     });
      const supplierChartCtx = document.getElementById('supplierChart').getContext('2d');
 
-    const supplierChart = new Chart(supplierChartCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Rodud', 'Al Majdouie', 'Supplier A', 'Supplier B', 'Supplier C'],
-            datasets: [
-                {
-                    label: 'تم الطلب',
-                    data: [4000, 3000, 2000, 3200, 900],
-                    backgroundColor: '#7514C0',
-                    borderRadius: 7,
-                    barThickness: 16,
-                },
-                {
-                    label: 'مكتملة',
-                    data: [3900, 2700, 1800, 1200, 800],
-                    backgroundColor: '#88C4A3',
-                    borderRadius: 7,
-                    barThickness: 16,
-                }
-            ]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                    labels: {
-                        font: { family: 'Almarai', size: 12 },
-                        color: '#515151',
-                        usePointStyle: true,     
-                        pointStyle: 'circle', 
-                        padding: 50
-                      
-                        
-                    }
-
-                }
-            },
-            scales: {
-            x: {
-            display: false
-           
-            },
-            y: {
-                grid: { display: true },
-                ticks: {
-                    font: { family: 'Almarai', size: 12 },
-                    color: '#515151'
-                }
-                }
-            }
-        }
-    });
-    const clientChartCtx = document.getElementById('clientChart').getContext('2d');
-    const clientChart = new Chart(clientChartCtx, {
+const supplierChart = new Chart(supplierChartCtx, {
     type: 'bar',
     data: {
         labels: ['Rodud', 'Al Majdouie', 'Supplier A', 'Supplier B', 'Supplier C'],
         datasets: [
             {
-        
+                label: 'تم الطلب',
+                data: [4000, 3000, 2000, 3200, 900],
+                backgroundColor: '#7514C0',
+                borderRadius: 7,
+                barThickness: 16,
+            },
+            {
+                label: 'مكتملة',
+                data: [3900, 2700, 1800, 1200, 800],
+                backgroundColor: '#88C4A3',
+                borderRadius: 7,
+                barThickness: 16,
+            }
+        ]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    font: { family: 'Almarai', size: 12 },
+                    color: '#515151',
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    padding: 50
+                }
+            },
+            tooltip: {
+                enabled: false,
+                external: function(context) {
+                    let tooltipEl = document.getElementById('supplier-tooltip');
+
+                    // أنشئ التولتيب إذا ما كان موجود
+                    if (!tooltipEl) {
+                        tooltipEl = document.createElement('div');
+                        tooltipEl.id = 'supplier-tooltip';
+                        tooltipEl.style.position = 'absolute';
+                        tooltipEl.style.background = '#fff';
+                        tooltipEl.style.border = '1px solid #ddd';
+                        tooltipEl.style.borderRadius = '10px';
+                        tooltipEl.style.padding = '10px';
+                        tooltipEl.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                        tooltipEl.style.pointerEvents = 'none';
+                        tooltipEl.style.fontFamily = 'Almarai, sans-serif';
+                        document.body.appendChild(tooltipEl);
+                    }
+
+                    const tooltipModel = context.tooltip;
+
+                    if (tooltipModel.opacity === 0) {
+                        tooltipEl.style.opacity = 0;
+                        return;
+                    }
+
+                    const dataPoints = tooltipModel.dataPoints;
+                    const title = tooltipModel.title[0];
+                      let html = `
+        <div style="font-size: 13px; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <i class="bi bi-people-fill" style="color:#7514C0;"></i>
+            <span>${title}</span>
+        </div>`;
+
+                    dataPoints.forEach(dp => {
+                        html += `
+                            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                                <div style="width: 10px; height: 10px; border-radius: 50%; background: ${dp.dataset.backgroundColor};"></div>
+                                <span style="font-weight:bold; color:gray;font-size: 10px;">${dp.dataset.label}:</span>
+                                <span style="font-size: 13px; font-weight: bold; color: ${dp.dataset.backgroundColor};">${dp.raw}</span>
+                            </div>`;
+                    });
+
+                    tooltipEl.innerHTML = html;
+                    const position = context.chart.canvas.getBoundingClientRect();
+                    tooltipEl.style.opacity = 1;
+                    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX - 15 + 'px';
+                    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 10 + 'px';
+                }
+            }
+        },
+        layout: {
+            padding: {
+                top: -47,
+                bottom: 10
+            }
+        },
+        scales: {
+            x: {
+                display: false,
+                grid: { display: false }
+            },
+            y: {
+                grid: { display: true },
+                ticks: {
+font: { family: 'Almarai', size: 12 },
+                    color: '#515151'
+                }
+            }
+        }
+    }
+});
+   const clientChartCtx = document.getElementById('clientChart').getContext('2d');
+
+const clientChart = new Chart(clientChartCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Rodud', 'Al Majdouie', 'Supplier A', 'Supplier B', 'Supplier C'],
+        datasets: [
+            {
+                label: 'عدد الطلبات',
                 data: [4000, 3000, 2000, 3200, 900],
                 backgroundColor: '#7514C0',
                 borderRadius: 7,
@@ -501,16 +737,83 @@ $('#supplier-daterange').daterangepicker({
         ]
     },
     options: {
-        indexAxis: 'y', // يخلي الشارت أفقي
-        responsive: true,
+        indexAxis: 'y',
+        responsive: false,
         plugins: {
             legend: {
-                display:false
+                display: false,
+                position: 'top',
+                labels: {
+                    font: { family: 'Almarai', size: 12 },
+                    color: '#515151',
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    padding: 50
+                }
+            },
+            tooltip: {
+    enabled: false,
+    external: function(context) {
+        let tooltipEl = document.getElementById('client-tooltip');
+
+        if (!tooltipEl) {
+            tooltipEl = document.createElement('div');
+            tooltipEl.id = 'client-tooltip';
+            tooltipEl.style.position = 'absolute';
+            tooltipEl.style.background = '#fff';
+            tooltipEl.style.border = '1px solid #ddd';
+            tooltipEl.style.borderRadius = '10px';
+            tooltipEl.style.padding = '10px';
+            tooltipEl.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+            tooltipEl.style.pointerEvents = 'none';
+            tooltipEl.style.fontFamily = 'Almarai, sans-serif';
+            document.body.appendChild(tooltipEl);
+        }
+
+        const tooltipModel = context.tooltip;
+
+        if (tooltipModel.opacity === 0) {
+            tooltipEl.style.opacity = 0;
+            return;
+        }
+
+        const dataPoints = tooltipModel.dataPoints;
+        const title = tooltipModel.title[0];
+
+        let html = `
+        <div style="font-size: 13px; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <i class="bi bi-people-fill" style="color:#7514C0;"></i>
+            <span>${title}</span>
+        </div>`;
+
+        dataPoints.forEach(dp => {
+            html += `
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                    <div style="width: 10px; height: 10px; border-radius: 50%; background: ${dp.dataset.backgroundColor};"></div>
+                    <span style="font-weight:bold; color:gray;font-size: 10px;">${dp.dataset.label}:</span>
+                    <span style="font-size: 13px; font-weight: bold; color: ${dp.dataset.backgroundColor};">${dp.raw.toLocaleString()}</span>
+                </div>`;
+        });
+
+        tooltipEl.innerHTML = html;
+
+        const position = context.chart.canvas.getBoundingClientRect();
+        tooltipEl.style.opacity = 1;
+        tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 15 + 'px';
+        tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 10 + 'px';
+    }
+}
+        },
+        layout: {
+            padding: {
+                top: 26,
+                bottom: 10
             }
         },
         scales: {
             x: {
-            display: false
+                display: false,
+                grid: { display: false }
             },
             y: {
                 grid: { display: true },
