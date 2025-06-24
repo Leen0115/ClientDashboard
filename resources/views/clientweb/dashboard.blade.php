@@ -75,7 +75,7 @@
 <div class="p-3 rounded shadow-sm" style="background-color: #fff;min-height: 400px;">
     <div class="d-flex justify-content-between align-items-start mb-1">
                 <div>
-                    <h5 class="fw-bold mb-1 mt-2">
+                    <h5 class="mb-1 mt-2"style="color: #515151;font-size: 18px;">
                         <i class="bi bi-box-seam ms-2"></i>نظرة عامة على إجمالي الطلبات</h5>
                     <p class="text-muted small mb-0">
 يعرض هذا الرسم البياني إجمالي عدد طلبات الرحلات على مر الزمن، مما يساعدك على تتبع اتجاهات الطلب وفترات الذروة.                    </p>
@@ -109,7 +109,7 @@
         <div class="d-flex justify-content-between align-items-start mb-2">
             <!-- العنوان والنص -->
             <div>
-                <h5 class="fw-bold mb-1">
+                <h5 class="mb-1"style="color: #515151;font-size: 18px;">
                     <i class="bi bi-diagram-3-fill ms-2"></i>تحليلات الموردين
                 </h5>
                 <p class="text-muted small mb-0">
@@ -148,7 +148,7 @@
     <div class="d-flex justify-content-between align-items-start mb-2">
       <!-- العنوان والنص -->
       <div>
-        <h5 class="fw-bold mb-1">
+        <h5 class="mb-1"style="color: #515151;font-size: 18px;">
           <i class="bi bi-people-fill ms-2"></i>تحليلات العملاء
         </h5>
         <p class="text-muted small mb-0">
@@ -166,7 +166,7 @@
             style="background-color: #F6F7F9; cursor: pointer;" readonly>
                 </div>
         <div class="text-center p-2 rounded border mb-3" style="background-color: #F6F7F9;width: 227px;">
-          <div class="text-muted small">إجمالي الطلبات</div>
+          <div class="text-muted small"style="color: #515151;">إجمالي الطلبات</div>
           <div class="fw-bold fs-5" style="color: #515151;">12,127</div>
         </div>
       </div>
@@ -182,8 +182,8 @@
       <!-- العنوان والوصف + التاريخ -->
       <div class="d-flex align-items-center gap-3">
         <div>
-          <h5 class="fw-bold mb-1">
-            <i class="bi bi-bar-chart-line-fill"></i> أعلى المدن والعملاء
+          <h5 class="mb-1 "style="color: #515151;font-size: 18px;">
+            <i class="bi bi-bar-chart-line-fill"style="color: #515151;font-size: 18px;"></i> أعلى المدن والعملاء
           </h5>
           <p class="text-muted small mb-0">
             يعرض هذا المربع إجمالي الطلبات وأهم عملاء الرحلات حسب المدن.
@@ -284,7 +284,7 @@
     <div class="d-flex justify-content-between align-items-start flex-wrap mb-4">
       <div class="d-flex align-items-start gap-3">
        <div>
-                    <h5 class="fw-bold mb-1 mt-2">
+                    <h5 class="mb-1 mt-2"style="color: #515151;font-size: 18px;">
                         <i class="bi bi-bar-chart-line-fill ms-2"></i>أعلى ٤ موردين - نظرة عامة على الرحلات وإثباتات التسليم وأوامر الدفع</h5>
                     <p class="text-muted small mb-0">
  يعرض هذا القسم إجمالي عدد الرحلات المنفذة لكل مورد، وإثباتات التسليم (PODs)، وأوامر الدفع التي تم إنشاؤها خلال فترة زمنية محددة.                </div>
@@ -1045,7 +1045,7 @@ let html = `
     <div style="font-size: 18px; font-weight: bold; color: #7514C0; margin-bottom: 0;">
       ${point.value || 0}
     </div>
-    <div style="height:2px; width:100%; background:#e0e0e0; margin:10px 0 14px 0; padding:0;"></div>
+    <div style="height:1px; width:100%; background:#e0e0e0; margin:10px 0 14px 0; padding:0;"></div>
 `;
     if (point.details) {
       const entries = Object.entries(point.details);
@@ -1053,7 +1053,7 @@ let html = `
       for (const [city, value] of entries) {
         html += `
           <div>
-            <div style="font-weight: bold; color: #333;">${value}</div>
+            <div style="font-weight: bold; color: #7514C0;">${value}</div>
             <div style="font-size: 10px; color: #666;">${city}</div>
           </div>`;
       }
