@@ -5,7 +5,13 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<h2 class="mb-4" style="color:#00000;">لوحة البيانات</h2>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<!-- ملف خريطة السعودية -->
+<script src="https://code.highcharts.com/mapdata/countries/sa/sa-all.js"></script>
+
+
+<h2 class="mb-3" style="color:#00000;">لوحة البيانات</h2>
 <div class="row mt-3">
     <!-- بطاقة 1: البحث -->
     <div class="col-md-4 mb-2">
@@ -44,7 +50,6 @@
             </div>
         </div>
     </div>
-
     <!-- بطاقة 3: مكتمل -->
     <div class="col-md-4 mb-3">
         <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
@@ -73,8 +78,7 @@
                     <h5 class="fw-bold mb-1 mt-2">
                         <i class="bi bi-box-seam ms-2"></i>نظرة عامة على إجمالي الطلبات</h5>
                     <p class="text-muted small mb-0">
-                        هذا المخطط يعرض العدد الإجمالي للطلبات على مدار الوقت، ويساعدك على تتبع الاتجاهات والفترات النشطة.
-                    </p>
+يعرض هذا الرسم البياني إجمالي عدد طلبات الرحلات على مر الزمن، مما يساعدك على تتبع اتجاهات الطلب وفترات الذروة.                    </p>
                 </div>
                 <div class="d-flex align-items-center">
                     <!-- التاريخ -->
@@ -179,90 +183,208 @@
       <div class="d-flex align-items-center gap-3">
         <div>
           <h5 class="fw-bold mb-1">
-            <i class="bi bi-bar-chart-line-fill"></i> أعلى المدن/ مواقع العملاء التي تم التوصيل إليها
+            <i class="bi bi-bar-chart-line-fill"></i> أعلى المدن والعملاء
           </h5>
-          <p class="text-muted small"style="max-width: 420px;">
-يعرض هذا الرسم البياني العدد الإجمالي لطلبات الرحلات عبر الزمن، مما يساعدك على تتبّع اتجاهات الطلب وفترات الذروة.</p>
+          <p class="text-muted small mb-0">
+            يعرض هذا المربع إجمالي الطلبات وأهم عملاء الرحلات حسب المدن.
+          </p>
         </div>
 
         <!-- فلتر التاريخ -->
-        <div class="position-relative" style="width: 227px; margin-top: -20px;">
+        <div class="position-relative" style="width: 227px;">
           <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
           <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
-          <input type="text" id="top-cities-daterange" class="form-control form-control-sm pe-5 ps-4 text-end" placeholder="اختر نطاق التاريخ" style="background-color: #F6F7F9; cursor: pointer;" readonly />
+          <input type="text" id="top-cities-daterange"
+            class="form-control form-control-sm pe-5 ps-4 text-end"
+            placeholder="اختر نطاق التاريخ"
+            style="background-color: #F6F7F9; cursor: pointer;" readonly />
         </div>
       </div>
-
-      <!-- التلميح -->
-      <div class="d-flex align-items-center flex-wrap gap-3 mt-3">
-        <small class="text-muted" style="margin-left: 60px; font-size: 14px;">
-          <i class="bi bi-info-circle me-1"></i> مرر المؤشر فوق الخريطة لعرض عدد الطلبات/الرحلات المكتملة إلى المنطقة/المدينة. 
+      <!-- نص المساعدة -->
+      <div class="d-flex align-items-center flex-wrap gap-3 mt-3"style="margin-left:200px;margin-top;">
+        <small class="text-muted" style="font-size: 14px;">
+          <i class="bi bi-info-circle me-1"></i> مرر المؤشر على الخريطة لعرض عدد الطلبات لكل منطقة/مدينة.
         </small>
+      </div>
+      <div class="row mt-4 w-100">
+        <!-- جدول أعلى المدن والعملاء -->
+        <div class="col-md-6">
+          <div class="table-responsive">
+            <table class="table top-table">
+              <thead>
+                <tr>
+                  <th>المدينة</th>
+                  <th>عدد الطلبات</th>
+                  <th>أفضل ٣ عملاء</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="rank-circle rank-1">1</span> الرياض</td>
+                  <td>1245</td>
+                  <td>
+                    <span class="client-pill">مصنع الحمراء - 54</span><br>
+                    <span class="client-pill">سابك - 52</span><br>
+                    <span class="client-pill">ABC - 47</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="rank-circle rank-2">2</span> جدة</td>
+                  <td>980</td>
+                  <td>
+                    <span class="client-pill">مصنع الحمراء - 54</span><br>
+                    <span class="client-pill">سابك - 45</span><br>
+                    <span class="client-pill">XYZ - 23</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="rank-circle rank-3">3</span> الدمام</td>
+                  <td>765</td>
+                  <td>
+                    <span class="client-pill">مياه رفا - 67</span><br>
+                    <span class="client-pill">مصنع أ - 54</span><br>
+                    <span class="client-pill">XYZ - 23</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>المدينة المنورة</td>
+                  <td>654</td>
+                  <td>
+                    <span class="client-pill">مصنع الحمراء - 54</span><br>
+                    <span class="client-pill">سابك - 52</span><br>
+                    <span class="client-pill">ABC - 47</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>مكة</td>
+                  <td>543</td>
+                  <td>
+                    <span class="client-pill">مصنع الحمراء - 54</span><br>
+                    <span class="client-pill">سابك - 45</span><br>
+                    <span class="client-pill">XYZ - 23</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- الخريطة  -->
+        <div class="col-md-6">
+<div id="sa-map-container" style="min-height: 570px; background: #fff; border-radius: 6px; padding: 15px;">
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- أعلى ٤ موردين -->
+<div class="col-12 mt-3">
+  <div class="p-3 rounded shadow-sm mb-4" style="background-color: #fff; min-height: 600px;">
+    <!-- العنوان والوصف وفلتر التاريخ -->
+    <div class="d-flex justify-content-between align-items-start flex-wrap mb-4">
+      <div class="d-flex align-items-start gap-3">
+       <div>
+                    <h5 class="fw-bold mb-1 mt-2">
+                        <i class="bi bi-bar-chart-line-fill ms-2"></i>أعلى ٤ موردين - نظرة عامة على الرحلات وإثباتات التسليم وأوامر الدفع</h5>
+                    <p class="text-muted small mb-0">
+ يعرض هذا القسم إجمالي عدد الرحلات المنفذة لكل مورد، وإثباتات التسليم (PODs)، وأوامر الدفع التي تم إنشاؤها خلال فترة زمنية محددة.                </div>
+      </div>
+      <div class="position-relative" style="width: 227px;">
+        <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
+        <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
+        <input type="text" id="top-suppliers-daterange"
+          class="form-control form-control-sm pe-5 ps-4 text-end"
+          placeholder="اختر نطاق التاريخ"
+          style="background-color: #F6F7F9; cursor: pointer;" readonly />
       </div>
     </div>
 
-    <!-- جدول أعلى المدن والعملاء -->
-    <div class="table-responsive mt-4" style="width: 45%; min-width: 320px;">
-<table class="table top-table">
-  <thead>
-    <tr>
-      <th>المدينة</th>
-      <th>عدد الطلبات</th>
-      <th>أفضل ٣ عملاء</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><span class="rank-circle rank-1">1</span> الرياض</td>
-      <td>1245</td>
-      <td>
-        <span class="client-pill">مصنع الحمراء - 54</span><br>
-        <span class="client-pill">سابك - 52</span><br>
-        <span class="client-pill">ABC - 47</span>
-      </td>
-    </tr>
-    <tr>
-      <td><span class="rank-circle rank-2">2</span> جدة</td>
-      <td>980</td>
-      <td>
-        <span class="client-pill">مصنع الحمراء - 54</span><br>
-        <span class="client-pill">سابك - 45</span><br>
-        <span class="client-pill">XYZ - 23</span>
-      </td>
-    </tr>
-    <tr>
-      <td><span class="rank-circle rank-3">3</span> الدمام</td>
-      <td>765</td>
-      <td>
-        <span class="client-pill">مياه رفا - 67</span><br>
-        <span class="client-pill">مصنع أ - 54</span><br>
-        <span class="client-pill">XYZ - 23</span>
-      </td>
-    </tr>
-    <tr>
-      <td>المدينة المنورة</td>
-      <td>654</td>
-      <td>
-        <span class="client-pill">مصنع الحمراء - 54</span><br>
-        <span class="client-pill">سابك - 52</span><br>
-        <span class="client-pill">ABC - 47</span>
-      </td>
-    </tr>
-    <tr>
-      <td>مكة</td>
-      <td>543</td>
-      <td>
-        <span class="client-pill">مصنع الحمراء - 54</span><br>
-        <span class="client-pill">سابك - 45</span><br>
-        <span class="client-pill">XYZ - 23</span>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <!-- كروت الموردين -->
+    @php
+        $suppliers = [
+            ['name' => 'ردود للخدمات اللوجستية', 'id' => 1],
+            ['name' => 'المجدوعي للخدمات اللوجستية', 'id' => 2],
+            ['name' => 'XYZ للخدمات اللوجستية', 'id' => 3],
+            ['name' => 'ABC للخدمات اللوجستية', 'id' => 4],
+        ];
+    @endphp
+<div class="row">
+@foreach($suppliers as $index => $supplier)
+    <div class="col-md-6 mb-4">
+        <div class="p-3 rounded shadow-sm h-100" style="background-color: #ffff;">
+            <h6 class="fw-bold mb-3">{{ $index + 1 }}. {{ $supplier['name'] }}</h6>
+            <div class="row">
+                <div class="col-4">
+                    <div class="p-2 text-center" style="background-color: #F6F7F9; border-radius: 8px;">
+                        <canvas id="tripsChart{{ $supplier['id'] }}" height="100"></canvas>
+                        <div class="mt-2 fw-bold">١,٢٠١</div>
+                        <div class="text-muted small">عدد الرحلات</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="p-2 text-center" style="background-color: #F6F7F9; border-radius: 8px;">
+                        <canvas id="podChart{{ $supplier['id'] }}" height="100"></canvas>
+                        <div class="mt-2 fw-bold">١,١٠١</div>
+                        <div class="text-muted small">إثباتات التسليم</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="p-2 text-center" style="background-color: #F6F7F9; border-radius: 8px;">
+                        <canvas id="paymentChart{{ $supplier['id'] }}" height="100"></canvas>
+                        <div class="mt-2 fw-bold">٩٨٧</div>
+                        <div class="text-muted small">أوامر الدفع</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    {{-- افتح صف جديد بعد كل شركتين --}}
+    @if(($index + 1) % 2 == 0)
+        </div><div class="row">
+    @endif
+@endforeach
+</div>
   </div>
+  <div class="row mt-3">
+    <!-- بطاقة 1: إجمالي الموردين -->
+    <div class="col-md-6 mb-2">
+        <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
+            <div>
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-diagram-3-fill fs-4 ms-2" style="color: #7514C0;"></i>
+                    <span class="card-text">إجمالي الموردين</span>
+                </div>
+                <div class="fs-3 move-number-right">56</div>
+            </div>
+            <div class="d-flex flex-column align-items-end move-rate-left">
+                <div class="badge rounded px-3 py-2 text-white fw-bold mb-1" style="background-color: #7514C0;">
+                    <i class="bi bi-arrow-up-right"></i> +12%
+                </div>
+                <div class="card-text-small mt-1 m-0 p-0" style="color:#51515">مقارنة بالأسبوع الماضي</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- بطاقة 2: إجمالي العملاء -->
+    <div class="col-md-6 mb-2">
+        <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
+            <div>
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-people-fill fs-4 ms-2" style="color: #7514C0;"></i>
+                    <span class="card-text">إجمالي العملاء</span>
+                </div>
+                <div class="fs-3 move-number-right">278</div>
+            </div>
+            <div class="d-flex flex-column align-items-end move-rate-left">
+                <div class="badge rounded px-3 py-2 text-white fw-bold mb-1" style="background-color: #7514C0;">
+                    <i class="bi bi-arrow-up-right"></i> +12%
+                </div>
+                <div class="card-text-small mt-1 m-0 p-0" style="color:#51515">مقارنة بالأسبوع الماضي</div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+
 @endsection
 @push('styles')
 <style>
@@ -296,7 +418,7 @@
     .move-rate-left {
         margin-left: 9px; 
     }
-#daterange, #client-daterange, #supplier-daterange , #top-cities-daterange {
+#daterange, #client-daterange, #supplier-daterange , #top-cities-daterange, #top-suppliers-daterange {
     padding-right: 34px !important;
     font-size: 13px;
 }
@@ -318,13 +440,16 @@
   border-spacing: 0;
    border-radius: 10px; 
   overflow: hidden; 
+  width: 100%;      
+  min-width: 320px; 
+  max-width: 640px; 
   }
 .top-table th,
 .top-table td {
-  text-align: center;         /* توسيط النص */
-  vertical-align: middle;     /* توسيط عمودي */
-  font-size: 15px;            /* حجم خط موحد */
-  padding: 14px 16px;         /* تباعد داخلي أكبر */
+  text-align: center;        
+  vertical-align: middle;    
+  font-size: 15px;          
+  padding: 14px 16px;        
   border-top: 1px solid #eee;
 }
 
@@ -339,7 +464,7 @@
 }
 
 .top-table tbody tr:hover {
-  background-color: #f6f6fa; /* لون خفيف عند المرور */
+  background-color: #f6f6fa; 
 }
 .top-table tbody tr:first-child td,
 .top-table tbody tr:first-child th {
@@ -391,6 +516,22 @@
   color: #b87333;
   border-color: #b87333;
   background-color: #fff1e5;
+}
+.highcharts-tooltip {
+  box-shadow: none !important;
+  filter: none !important;
+  background: #fff !important;
+  border: none !important;
+}
+.highcharts-tooltip > span, 
+.highcharts-tooltip > div {
+  box-shadow: none !important;
+  filter: none !important;
+  background: #fff !important;
+  border: none !important;
+}
+.highcharts-tooltip text {
+  filter: none !important;
 }
 
 
@@ -547,6 +688,37 @@ $('#supplier-daterange').daterangepicker({
         $('#top-cities-daterange').val(formattedRange);
     }
 });
+$('#top-suppliers-daterange').daterangepicker({
+    opens: 'left',
+    autoUpdateInput: false,
+    locale: {
+        format: 'MMM D, YYYY',
+        applyLabel: 'تطبيق',
+        cancelLabel: 'إلغاء',
+        customRangeLabel: 'نطاق مخصص',
+        daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+        monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+            'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+        firstDay: 6
+    },
+    ranges: {
+        'اليوم': [moment(), moment()],
+        'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
+        'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
+        'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
+        'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
+}, function (start, end, label) {
+    let formatted = start.format('MMM D, YYYY');
+    let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
+    if (label === 'اليوم' || label === 'أمس') {
+        $('#top-suppliers-daterange').val(formatted);
+    } else {
+        $('#top-suppliers-daterange').val(formattedRange);
+    }
+});
+
     const ctx = document.getElementById('ordersChart').getContext('2d');
     const ordersChart = new Chart(ctx, {
         type: 'bar',
@@ -627,8 +799,7 @@ $('#supplier-daterange').daterangepicker({
             }
         }
     });
-     const supplierChartCtx = document.getElementById('supplierChart').getContext('2d');
-
+const supplierChartCtx = document.getElementById('supplierChart').getContext('2d');
 const supplierChart = new Chart(supplierChartCtx, {
     type: 'bar',
     data: {
@@ -696,7 +867,7 @@ const supplierChart = new Chart(supplierChartCtx, {
                     const title = tooltipModel.title[0];
                       let html = `
         <div style="font-size: 13px; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-            <i class="bi bi-people-fill" style="color:#7514C0;"></i>
+            <i class="bi bi-diagram-3-fill" style="color:#7514C0;"></i>
             <span>${title}</span>
         </div>`;
 
@@ -708,7 +879,6 @@ const supplierChart = new Chart(supplierChartCtx, {
                                 <span style="font-size: 13px; font-weight: bold; color: ${dp.dataset.backgroundColor};">${dp.raw}</span>
                             </div>`;
                     });
-
                     tooltipEl.innerHTML = html;
                     const position = context.chart.canvas.getBoundingClientRect();
                     tooltipEl.style.opacity = 1;
@@ -842,6 +1012,188 @@ const clientChart = new Chart(clientChartCtx, {
             }
         }
     }
+});
+Highcharts.mapChart('sa-map-container', {
+  chart: {
+    map: 'countries/sa/sa-all',
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    style: {
+      fontFamily: 'Almarai, sans-serif'
+    }
+  },
+
+  title: { text: '' },
+  subtitle: { text: '' },
+  mapNavigation: { enabled: false },
+  credits: { enabled: false },
+  exporting: { enabled: false },
+  legend: { enabled: false },
+
+ tooltip: {
+  useHTML: true,
+  formatter: function () {
+    const point = this.point;
+    const icon = `<i class="bi bi-geo-fill" style="color:#7514C0; font-size:18px; margin-right:6px;"></i>`;
+let html = `
+  <div style="font-family: Almarai, sans-serif; direction: rtl; text-align: right; padding: 10px 0 10px 0; min-width: 220px; max-width: 600px; border-radius:7px;">
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+    ${icon}
+      <span style="font-size: 16px; font-weight: 700;">${point.name}</span>
+    </div>
+    <div style="color: #888; font-size: 11px; margin-bottom: 8px;">إجمالي الطلبات</div>
+    <div style="font-size: 18px; font-weight: bold; color: #7514C0; margin-bottom: 0;">
+      ${point.value || 0}
+    </div>
+    <div style="height:2px; width:100%; background:#e0e0e0; margin:10px 0 14px 0; padding:0;"></div>
+`;
+    if (point.details) {
+      const entries = Object.entries(point.details);
+      html += `<div style="display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 10px; font-size: 13px; text-align: center;">`;
+      for (const [city, value] of entries) {
+        html += `
+          <div>
+            <div style="font-weight: bold; color: #333;">${value}</div>
+            <div style="font-size: 10px; color: #666;">${city}</div>
+          </div>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `</div>`;
+    return html;
+  }
+},
+
+  colorAxis: {
+    min: 0,
+    max: 250,
+    stops: [
+      [0, '#F2E6FB'],
+      [0.3, '#C69DF2'],
+      [0.6, '#9B5DD9'],
+      [1, '#7514C0']
+    ]
+  },
+
+  series: [{
+    data: [
+      {
+        'hc-key': 'sa-ri', name: 'منطقة الرياض', value: 150,
+        details: {
+          'الرياض': 98,
+          'الخرج': 21,
+          'المجمعة': 8,
+          'الزلفي': 7,
+          'وادي الدواسر': 5,
+          'الدرعية': 2
+        }
+      },
+      {
+        'hc-key': 'sa-md', name: 'منطقة المدينة', value: 110,
+        details: {
+          'المدينة': 60,
+          'ينبع': 25,
+          'العلا': 15,
+          'بدر': 10
+        }
+      },
+      {
+        'hc-key': 'sa-mk', name: 'منطقة مكة', value: 130,
+        details: {
+          'مكة': 40,
+          'جدة': 35,
+          'الطائف': 30,
+          'رابغ': 15,
+          'خليص': 10
+        }
+      },
+      {
+        'hc-key': 'sa-sh', name: 'منطقة الشرقية', value: 115,
+        details: {
+          'الدمام': 60,
+          'الخبر': 35,
+          'القطيف': 20
+        }
+      }
+    ],
+    joinBy: 'hc-key',
+    name: 'عدد الطلبات',
+    states: {
+      hover: { brightness: 0.15 }
+    },
+    dataLabels: { enabled: false },
+    borderColor: '#fff',
+    borderWidth: 1
+  }]
+});
+Chart.register({
+    id: 'centerText',
+    beforeDraw: function(chart) {
+        if (chart.config.options.elements && chart.config.options.elements.center) {
+            let ctx = chart.ctx;
+            let centerConfig = chart.config.options.elements.center;
+            let fontStyle = centerConfig.fontStyle || 'Arial';
+            let txt = centerConfig.text;
+            let color = centerConfig.color || '#000';
+            let maxFontSize = centerConfig.maxFontSize || 18;
+            let sidePadding = centerConfig.sidePadding || 20;
+            let sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
+            ctx.font = "30px " + fontStyle;
+
+            let stringWidth = ctx.measureText(txt).width;
+            let elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+            let widthRatio = elementWidth / stringWidth;
+            let newFontSize = Math.min(maxFontSize, Math.floor(30 * widthRatio));
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.font = newFontSize + "px " + fontStyle;
+            ctx.fillStyle = color;
+
+            let centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+            let centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+            ctx.fillText(txt, centerX, centerY);
+        }
+    }
+});
+const circleOptions = (value, color, labelText) => ({
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [value, 100 - value],
+            backgroundColor: [color, '#eee'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        cutout: '70%',
+        responsive: false,
+        plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false }
+        },
+        elements: {
+            center: {
+                text: labelText,
+                color: '#000',
+                fontStyle: 'Arial',
+                sidePadding: 15,
+                maxFontSize: 22
+            }
+        }
+    }
+});
+const data = [
+    { id: 1, trips: 90, pod: 85, payment: 75 },
+    { id: 2, trips: 92, pod: 83, payment: 77 },
+    { id: 3, trips: 88, pod: 80, payment: 70 },
+    { id: 4, trips: 85, pod: 82, payment: 72 },
+];
+
+data.forEach(item => {
+    new Chart(document.getElementById('tripsChart' + item.id), circleOptions(item.trips, '#250059', '١,٢٠١'));
+    new Chart(document.getElementById('podChart' + item.id), circleOptions(item.pod, '#489C7B', '١,١٠١'));
+    new Chart(document.getElementById('paymentChart' + item.id), circleOptions(item.payment, '#7514C0', '٩٨٧'));
 });
 </script>
 @endpush
