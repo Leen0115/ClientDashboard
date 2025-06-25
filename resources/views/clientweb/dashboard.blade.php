@@ -284,10 +284,13 @@
     <div class="d-flex justify-content-between align-items-start flex-wrap mb-4">
       <div class="d-flex align-items-start gap-3">
        <div>
-                    <h5 class="mb-1 mt-2"style="color: #515151;font-size: 18px;">
-                        <i class="bi bi-bar-chart-line-fill ms-2"></i>أعلى ٤ موردين - نظرة عامة على الرحلات وإثباتات التسليم وأوامر الدفع</h5>
-                    <p class="text-muted small mb-0">
- يعرض هذا القسم إجمالي عدد الرحلات المنفذة لكل مورد، وإثباتات التسليم (PODs)، وأوامر الدفع التي تم إنشاؤها خلال فترة زمنية محددة.                </div>
+          <h5 class="mb-1 mt-2" style="color: #515151;font-size: 18px;">
+            <i class="bi bi-bar-chart-line-fill ms-2"></i>أعلى ٤ موردين - نظرة عامة على الرحلات وإثباتات التسليم وأوامر الدفع
+          </h5>
+          <p class="text-muted small mb-0">
+            يعرض هذا القسم إجمالي عدد الرحلات المنفذة لكل مورد، وإثباتات التسليم (PODs)، وأوامر الدفع التي تم إنشاؤها خلال فترة زمنية محددة.
+          </p>
+        </div>
       </div>
       <div class="position-relative" style="width: 227px;">
         <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
@@ -308,43 +311,55 @@
             ['name' => 'ABC للخدمات اللوجستية', 'id' => 4],
         ];
     @endphp
-<div class="row">
-@foreach($suppliers as $index => $supplier)
-    <div class="col-md-6 mb-4">
-        <div class="p-3 rounded shadow-sm h-100" style="background-color: #ffff;">
-            <h6 class="fw-bold mb-3">{{ $index + 1 }}. {{ $supplier['name'] }}</h6>
-            <div class="row">
-                <div class="col-4">
-                    <div class="p-2 text-center" style="background-color: #F6F7F9; border-radius: 8px;">
-                        <canvas id="tripsChart{{ $supplier['id'] }}" height="100"></canvas>
-                        <div class="mt-2 fw-bold">١,٢٠١</div>
-                        <div class="text-muted small">عدد الرحلات</div>
-                    </div>
+    <div class="row">
+      @foreach($suppliers as $index => $supplier)
+        <div class="col-md-6 mb-4">
+          <div class="p-3 rounded h-100" style="background-color: #ffff;">
+            <h6 class="mb-3" style="color: #515151;font-size: 18px;">{{ $index + 1 }}. {{ $supplier['name'] }}</h6>
+            <div class="row text-center">
+              <div class="col-4">
+<div class="p-2 d-flex flex-column align-items-center justify-content-center"
+     style="background-color: #F6F7F9; border-radius: 8px; width: 220px; height: 250px; min-width: 220px; min-height: 250px;">                    
+     <div class="mb-2 mt-2" style="font-size: 14px;">الرحلات المكتملة</div>
+                  <canvas id="tripsChart{{ $supplier['id'] }}" height="100" width="100" style="display: block; margin: 0 auto;"></canvas>
+<div class="d-flex flex-column align-items-center mt-2">
+    <div class="supplier-legend-label mt-2"><span class="dot" style="background-color:#e4e4e4;"></span>قيد التنفيذ</div>
+    <div class="supplier-legend-label mt-1"><span class="dot" style="background-color:#250059;"></span>مكتمل</div>
+                  </div>
                 </div>
-                <div class="col-4">
-                    <div class="p-2 text-center" style="background-color: #F6F7F9; border-radius: 8px;">
-                        <canvas id="podChart{{ $supplier['id'] }}" height="100"></canvas>
-                        <div class="mt-2 fw-bold">١,١٠١</div>
-                        <div class="text-muted small">إثباتات التسليم</div>
-                    </div>
+              </div>
+              <div class="col-4">
+<div class="p-2 d-flex flex-column align-items-center justify-content-center"
+     style="background-color: #F6F7F9; border-radius: 8px; width: 220px; height: 250px; min-width: 220px; min-height: 250px;">                    <div class="mb-2 mt-2" style="font-size: 14px;">إثباتات التسليم (PODs)</div>
+                  <canvas id="podChart{{ $supplier['id'] }}" height="100" width="100" style="display: block; margin: 0 auto;"></canvas>
+                  <div class="d-flex flex-column align-items-center mt-2">
+                    <div class="supplier-legend-label mt-2"><span class="dot" style="background-color:#e4e4e4;"></span>لم يسلم</div>
+                    <div class="supplier-legend-label mt-1"><span class="dot" style="background-color:#489C7B;"></span>تم التسليم</div>
+                  </div>
                 </div>
-                <div class="col-4">
-                    <div class="p-2 text-center" style="background-color: #F6F7F9; border-radius: 8px;">
-                        <canvas id="paymentChart{{ $supplier['id'] }}" height="100"></canvas>
-                        <div class="mt-2 fw-bold">٩٨٧</div>
-                        <div class="text-muted small">أوامر الدفع</div>
-                    </div>
+              </div>
+              <div class="col-4">
+<div class="p-2 d-flex flex-column align-items-center justify-content-center"
+     style="background-color: #F6F7F9; border-radius: 8px; width: 220px; height: 250px; min-width: 220px; min-height: 250px;">                  
+     <div class="mb-2 mt-2" style="font-size: 14px;">أوامر الدفع</div>
+                  <canvas id="paymentChart{{ $supplier['id'] }}" height="100" width="100" style="display: block; margin: 0 auto;"></canvas>
+                  <div class="d-flex flex-column align-items-center mt-2">
+                    <div class="supplier-legend-label mt-2"><span class="dot" style="background-color:#e4e4e4;"></span>لم تُنشأ</div>
+                    <div class="supplier-legend-label mt-1"><span class="dot" style="background-color:#7514C0;"></span>تم الإنشاء</div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+        @if(($index + 1) % 2 == 0)
+          </div><div class="row">
+        @endif
+      @endforeach
     </div>
-    {{-- افتح صف جديد بعد كل شركتين --}}
-    @if(($index + 1) % 2 == 0)
-        </div><div class="row">
-    @endif
-@endforeach
-</div>
   </div>
+</div>
+
   <div class="row mt-3">
     <!-- بطاقة 1: إجمالي الموردين -->
     <div class="col-md-6 mb-2">
@@ -418,6 +433,17 @@
     .move-rate-left {
         margin-left: 9px; 
     }
+    .daterangepicker .ranges {
+    direction: rtl;
+    text-align: right;
+    float: right !important;
+}
+.daterangepicker .ranges ul {
+    padding-right: 0 !important;
+}
+.daterangepicker .ranges li {
+    text-align: right !important;
+}
 #daterange, #client-daterange, #supplier-daterange , #top-cities-daterange, #top-suppliers-daterange {
     padding-right: 34px !important;
     font-size: 13px;
@@ -533,8 +559,27 @@
 .highcharts-tooltip text {
   filter: none !important;
 }
-
-
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-inline-end: 6px;
+    }
+    .supplier-legend-label {
+    font-size: 8px;
+}
+    .chart-legend {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 8px;
+        font-size: 12px;
+        color: #666;
+    }
+    .supplier-legend-label {
+    font-size: 12px;
+}
 </style>
 @endpush
 @push('scripts')
@@ -718,7 +763,6 @@ $('#top-suppliers-daterange').daterangepicker({
         $('#top-suppliers-daterange').val(formattedRange);
     }
 });
-
     const ctx = document.getElementById('ordersChart').getContext('2d');
     const ordersChart = new Chart(ctx, {
         type: 'bar',
@@ -761,7 +805,8 @@ $('#top-suppliers-daterange').daterangepicker({
         const label = dataPoint.label;
         const date = new Date(`${label} 2025`);
         const weekday = date.toLocaleDateString('ar-EG', { weekday: 'long' });
-        const day = date.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' });
+       const month = date.toLocaleDateString('ar-EG', {month: 'long' });
+       const day = date.toLocaleDateString('EG', { day: 'numeric'});
         tooltipEl.querySelector('.custom-tooltip-inner').innerHTML = `
             <div style="padding:7px 9px; background:white; border:1px solid #eee; border-radius:10px; min-width:40px;">
                 <div class="d-flex align-items-center mb-1">
@@ -769,7 +814,7 @@ $('#top-suppliers-daterange').daterangepicker({
                     <span style="font-weight:bold; color:gray;font-size: 10px;">إجمالي الطلبات</span>
                 </div>
                 <div style="font-size: 15px; font-weight: bold; text-align:center; color:#7514C0;">${value}</div>
-                <div style="font-size:10px; color:gray; text-align:center;">${weekday}، ${day}</div>
+                <div style="font-size:10px; color:gray; text-align:center;">${weekday}، ${day} ${month}</div>
             </div>`;
         const position = context.chart.canvas.getBoundingClientRect();
         tooltipEl.style.opacity = 1;
@@ -1128,72 +1173,74 @@ let html = `
   }]
 });
 Chart.register({
-    id: 'centerText',
-    beforeDraw: function(chart) {
-        if (chart.config.options.elements && chart.config.options.elements.center) {
-            let ctx = chart.ctx;
-            let centerConfig = chart.config.options.elements.center;
-            let fontStyle = centerConfig.fontStyle || 'Arial';
-            let txt = centerConfig.text;
-            let color = centerConfig.color || '#000';
-            let maxFontSize = centerConfig.maxFontSize || 18;
-            let sidePadding = centerConfig.sidePadding || 20;
-            let sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
-            ctx.font = "30px " + fontStyle;
-
-            let stringWidth = ctx.measureText(txt).width;
-            let elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
-            let widthRatio = elementWidth / stringWidth;
-            let newFontSize = Math.min(maxFontSize, Math.floor(30 * widthRatio));
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.font = newFontSize + "px " + fontStyle;
-            ctx.fillStyle = color;
-
-            let centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
-            let centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
-            ctx.fillText(txt, centerX, centerY);
-        }
+  id: 'centerText',
+  beforeDraw: function(chart) {
+    if (chart.config.options.elements && chart.config.options.elements.center) {
+      let ctx = chart.ctx;
+      let centerConfig = chart.config.options.elements.center;
+      let fontStyle = centerConfig.fontStyle || 'Almarai';
+      let txt = centerConfig.text;
+      let color = centerConfig.color || '#000';
+      let maxFontSize = centerConfig.maxFontSize || 18;
+      let sidePadding = centerConfig.sidePadding || 20;
+      let sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
+      ctx.font = "30px " + fontStyle;
+      let stringWidth = ctx.measureText(txt).width;
+      let elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+      let widthRatio = elementWidth / stringWidth;
+      let newFontSize = maxFontSize;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = newFontSize + "px " + fontStyle;
+      ctx.fillStyle = color;
+      let centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+      let centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+      ctx.fillText(txt, centerX, centerY);
     }
+  }
 });
-const circleOptions = (value, color, labelText) => ({
+
+const circleOptions = (completed, total, color, labelText) => {
+  const percentage = (completed / total) * 100;
+  return {
     type: 'doughnut',
     data: {
-        datasets: [{
-            data: [value, 100 - value],
-            backgroundColor: [color, '#eee'],
-            borderWidth: 0
-        }]
+      datasets: [{
+        data: [percentage, 100 - percentage],
+        backgroundColor: [color, '#e4e4e4'],
+        borderWidth: 0,
+      }]
     },
     options: {
-        cutout: '70%',
-        responsive: false,
-        plugins: {
-            legend: { display: false },
-            tooltip: { enabled: false }
-        },
-        elements: {
-            center: {
-                text: labelText,
-                color: '#000',
-                fontStyle: 'Arial',
-                sidePadding: 15,
-                maxFontSize: 22
-            }
+      cutout: '80%',
+      responsive: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false }
+      },
+      elements: {
+        center: {
+          text: labelText,
+          color: '#515151',
+          fontStyle: 'Almarai',
+          maxFontSize: 16
         }
+      }
     }
-});
+  };
+};
+
 const data = [
-    { id: 1, trips: 90, pod: 85, payment: 75 },
-    { id: 2, trips: 92, pod: 83, payment: 77 },
-    { id: 3, trips: 88, pod: 80, payment: 70 },
-    { id: 4, trips: 85, pod: 82, payment: 72 },
+  { id: 1, trips: 1201, totalTrips: 1300, pod: 1101, totalPod: 1200, payment: 987, totalPayment: 1050 },
+  { id: 2, trips: 1100, totalTrips: 1250, pod: 980, totalPod: 1150, payment: 870, totalPayment: 1000 },
+  { id: 3, trips: 1020, totalTrips: 1150, pod: 940, totalPod: 1100, payment: 820, totalPayment: 950 },
+  { id: 4, trips: 900, totalTrips: 1000, pod: 860, totalPod: 950, payment: 790, totalPayment: 900 },
 ];
 
 data.forEach(item => {
-    new Chart(document.getElementById('tripsChart' + item.id), circleOptions(item.trips, '#250059', '١,٢٠١'));
-    new Chart(document.getElementById('podChart' + item.id), circleOptions(item.pod, '#489C7B', '١,١٠١'));
-    new Chart(document.getElementById('paymentChart' + item.id), circleOptions(item.payment, '#7514C0', '٩٨٧'));
+  new Chart(document.getElementById('tripsChart' + item.id), circleOptions(item.trips, item.totalTrips, '#250059', item.trips.toLocaleString()));
+  new Chart(document.getElementById('podChart' + item.id), circleOptions(item.pod, item.totalPod, '#489C7B', item.pod.toLocaleString()));
+  new Chart(document.getElementById('paymentChart' + item.id), circleOptions(item.payment, item.totalPayment, '#7514C0', item.payment.toLocaleString()));
 });
 </script>
 @endpush
