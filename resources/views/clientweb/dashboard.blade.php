@@ -585,184 +585,6 @@
 @push('scripts')
 <script>
     $(function () {
-        $('#daterange').val('');
-        $('#daterange').daterangepicker({
-    opens: 'left',
-    autoUpdateInput: false,
-    locale: {
-        format: 'MMM D, YYYY',
-        applyLabel: 'تطبيق',
-        cancelLabel: 'إلغاء',
-        customRangeLabel: 'نطاق مخصص',
-        daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
-        monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-            'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
-        firstDay: 6
-    },
-    ranges: {
-        'اليوم': [moment(), moment()],
-        'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
-        'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
-        'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
-        'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-    }
-}, function (start, end, label) {
-    let formatted = start.format('MMM D, YYYY');
-    let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
-    
-    // تحديث الحقل بناءً على الاختيار
-    if (label === 'اليوم' || label === 'أمس') {
-        $('#daterange').val(formatted);
-    } else {
-        $('#daterange').val(formattedRange);
-    }
-});
-
-// نجبره يحدث التاريخ يدويًا أول مرة ينفتح
-$('#daterange').on('show.daterangepicker', function(ev, picker) {
-    if (!$(this).val()) {
-        const today = moment().format('MMM D, YYYY');
-        $(this).val(today);
-    }
-});
-$('#supplier-daterange').daterangepicker({
-        opens: 'left',
-        autoUpdateInput: false,
-        locale: {
-            format: 'MMM D, YYYY',
-            applyLabel: 'تطبيق',
-            cancelLabel: 'إلغاء',
-            customRangeLabel: 'نطاق مخصص',
-            daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
-            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-                'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
-            firstDay: 6
-        },
-        ranges: {
-            'اليوم': [moment(), moment()],
-            'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
-            'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
-            'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
-            'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    }, function (start, end, label) {
-        let formatted = start.format('MMM D, YYYY');
-        let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
-        if (label === 'اليوم' || label === 'أمس') {
-            $('#supplier-daterange').val(formatted);
-        } else {
-            $('#supplier-daterange').val(formattedRange);
-        }
-    });
-
-    // تعيين التاريخ الافتراضي عند أول فتح
-    $('#supplier-daterange').on('show.daterangepicker', function(ev, picker) {
-        if (!$(this).val()) {
-            const today = moment().format('MMM D, YYYY');
-            $(this).val(today);
-        }
-    });
-    $('#client-daterange').daterangepicker({
-        opens: 'left',
-        autoUpdateInput: false,
-        locale: {
-            format: 'MMM D, YYYY',
-            applyLabel: 'تطبيق',
-            cancelLabel: 'إلغاء',
-            customRangeLabel: 'نطاق مخصص',
-            daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
-            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-                'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
-            firstDay: 6
-        },
-        ranges: {
-            'اليوم': [moment(), moment()],
-            'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
-            'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
-            'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
-            'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    }, function (start, end, label) {
-        let formatted = start.format('MMM D, YYYY');
-        let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
-        if (label === 'اليوم' || label === 'أمس') {
-            $('#client-daterange').val(formatted);
-        } else {
-            $('#client-daterange').val(formattedRange);
-        }
-    });
-
-    // تعيين التاريخ الافتراضي عند أول فتح
-    $('#client-daterange').on('show.daterangepicker', function(ev, picker) {
-        if (!$(this).val()) {
-            const today = moment().format('MMM D, YYYY');
-            $(this).val(today);
-        }
-    });
-    });
-    $('#top-cities-daterange').daterangepicker({
-    opens: 'left',
-    autoUpdateInput: false,
-    locale: {
-        format: 'MMM D, YYYY',
-        applyLabel: 'تطبيق',
-        cancelLabel: 'إلغاء',
-        customRangeLabel: 'نطاق مخصص',
-        daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
-        monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-            'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
-        firstDay: 6
-    },
-    ranges: {
-        'اليوم': [moment(), moment()],
-        'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
-        'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
-        'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
-        'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-    }
-}, function (start, end, label) {
-    let formatted = start.format('MMM D, YYYY');
-    let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
-    if (label === 'اليوم' || label === 'أمس') {
-        $('#top-cities-daterange').val(formatted);
-    } else {
-        $('#top-cities-daterange').val(formattedRange);
-    }
-});
-$('#top-suppliers-daterange').daterangepicker({
-    opens: 'left',
-    autoUpdateInput: false,
-    locale: {
-        format: 'MMM D, YYYY',
-        applyLabel: 'تطبيق',
-        cancelLabel: 'إلغاء',
-        customRangeLabel: 'نطاق مخصص',
-        daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
-        monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-            'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
-        firstDay: 6
-    },
-    ranges: {
-        'اليوم': [moment(), moment()],
-        'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
-        'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
-        'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
-        'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-    }
-}, function (start, end, label) {
-    let formatted = start.format('MMM D, YYYY');
-    let formattedRange = `${formatted} - ${end.format('MMM D, YYYY')}`;
-    if (label === 'اليوم' || label === 'أمس') {
-        $('#top-suppliers-daterange').val(formatted);
-    } else {
-        $('#top-suppliers-daterange').val(formattedRange);
-    }
-});
     const ctx = document.getElementById('ordersChart').getContext('2d');
     const ordersChart = new Chart(ctx, {
         type: 'bar',
@@ -1241,6 +1063,114 @@ data.forEach(item => {
   new Chart(document.getElementById('tripsChart' + item.id), circleOptions(item.trips, item.totalTrips, '#250059', item.trips.toLocaleString()));
   new Chart(document.getElementById('podChart' + item.id), circleOptions(item.pod, item.totalPod, '#489C7B', item.pod.toLocaleString()));
   new Chart(document.getElementById('paymentChart' + item.id), circleOptions(item.payment, item.totalPayment, '#7514C0', item.payment.toLocaleString()));
+});
+ const commonDatePickerOptions = {
+        opens: 'left',
+        autoUpdateInput: false,
+        locale: {
+            format: 'MMM D, YYYY',
+            applyLabel: 'تطبيق',
+            cancelLabel: 'إلغاء',
+            customRangeLabel: 'نطاق مخصص',
+            daysOfWeek: ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+                'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+            firstDay: 6
+        },
+        ranges: {
+            'اليوم': [moment(), moment()],
+            'أمس': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'آخر 7 أيام': [moment().subtract(6, 'days'), moment()],
+            'آخر 30 يوم': [moment().subtract(29, 'days'), moment()],
+            'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
+            'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    };
+
+    // 🟢 دالة تحديث شارت الطلبات
+    function updateOrdersChart(startDate, endDate) {
+        const labels = [];
+        const data = [];
+        let current = moment(startDate);
+        while (current.isSameOrBefore(endDate)) {
+            labels.push(current.format('MMM DD'));
+            data.push(Math.floor(Math.random() * 150) + 30);
+            current.add(1, 'day');
+        }
+        ordersChart.data.labels = labels;
+        ordersChart.data.datasets[0].data = data;
+        ordersChart.update();
+    }
+
+    // 🟢 دالة تحديث شارت الموردين
+    function updateSupplierChart(startDate, endDate) {
+        if (endDate.isAfter(moment())) endDate = moment();
+
+        const labels = ['Rodud', 'Al Majdouie', 'Supplier A', 'Supplier B', 'Supplier C'];
+        const orderedData = [];
+        const completedData = [];
+
+        for (let i = 0; i < labels.length; i++) {
+            orderedData.push(Math.floor(Math.random() * 3000) + 500);
+            completedData.push(Math.floor(Math.random() * 2000) + 300);
+        }
+
+        supplierChart.data.labels = labels;
+        supplierChart.data.datasets[0].data = orderedData;
+        supplierChart.data.datasets[1].data = completedData;
+        supplierChart.update();
+    }
+
+    // 🟢 دالة تحديث شارت العملاء
+    function updateClientChart(startDate, endDate) {
+        if (endDate.isAfter(moment())) endDate = moment();
+
+        const labels = ['Client A', 'Client B', 'Client C', 'Client D', 'Client E'];
+        const data = [];
+
+        for (let i = 0; i < labels.length; i++) {
+            data.push(Math.floor(Math.random() * 2000) + 400);
+        }
+
+        clientChart.data.labels = labels;
+        clientChart.data.datasets[0].data = data;
+        clientChart.update();
+    }
+
+    // ✅ ربط فلتر الطلبات
+    $('#daterange').daterangepicker(commonDatePickerOptions, function(start, end, label) {
+        $('#daterange').val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
+        updateOrdersChart(start, end);
+    }).on('show.daterangepicker', function () {
+        if (!$(this).val()) $(this).val(moment().format('MMM D, YYYY'));
+    });
+
+    // ✅ ربط فلتر الموردين
+    $('#supplier-daterange').daterangepicker(commonDatePickerOptions, function(start, end, label) {
+        $('#supplier-daterange').val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
+        updateSupplierChart(start, end);
+    }).on('show.daterangepicker', function () {
+        if (!$(this).val()) $(this).val(moment().format('MMM D, YYYY'));
+    });
+
+    // ✅ ربط فلتر العملاء
+    $('#client-daterange').daterangepicker(commonDatePickerOptions, function(start, end, label) {
+        $('#client-daterange').val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
+        updateClientChart(start, end);
+    }).on('show.daterangepicker', function () {
+        if (!$(this).val()) $(this).val(moment().format('MMM D, YYYY'));
+    });
+
+    // ✅ ربط فلاتر المدن والموردين الأعلى (حالياً ما لها شارت مرتبط مباشر)
+    $('#top-cities-daterange, #top-suppliers-daterange').each(function () {
+        const input = $(this);
+        input.daterangepicker(commonDatePickerOptions, function(start, end, label) {
+            input.val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
+        }).on('show.daterangepicker', function () {
+            if (!input.val()) input.val(moment().format('MMM D, YYYY'));
+        });
+    });
+
 });
 </script>
 @endpush
