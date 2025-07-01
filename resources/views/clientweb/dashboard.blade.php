@@ -9,8 +9,6 @@
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 <!-- ملف خريطة السعودية -->
 <script src="https://code.highcharts.com/mapdata/countries/sa/sa-all.js"></script>
-
-
 <h2 class="mb-3" style="color:#00000;">لوحة البيانات</h2>
 <div class="row mt-3">
     <!-- بطاقة 1: البحث -->
@@ -31,7 +29,6 @@
             </div>
         </div>
     </div>
-
     <!-- بطاقة 2: في رحلة -->
     <div class="col-md-4 mb-2">
         <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
@@ -69,7 +66,6 @@
         </div>  
     </div>
 </div>
-
 <!-- نظرة عامة على إجمالي الطلبات -->
     <div class="col-12">
 <div class="p-3 rounded shadow-sm" style="background-color: #fff;min-height: 400px;">
@@ -189,7 +185,6 @@
             يعرض هذا المربع إجمالي الطلبات وأهم عملاء الرحلات حسب المدن.
           </p>
         </div>
-
         <!-- فلتر التاريخ -->
         <div class="position-relative" style="width: 227px;">
           <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
@@ -268,7 +263,6 @@
             </table>
           </div>
         </div>
-
         <!-- الخريطة  -->
         <div class="col-md-6">
 <div id="sa-map-container" style="min-height: 570px; background: #fff; border-radius: 6px; padding: 15px;">
@@ -301,7 +295,6 @@
           style="background-color: #F6F7F9; cursor: pointer;" readonly />
       </div>
     </div>
-
     <!-- كروت الموردين -->
     @php
         $suppliers = [
@@ -359,7 +352,6 @@
     </div>
   </div>
 </div>
-
   <div class="row mt-3">
     <!-- بطاقة 1: إجمالي الموردين -->
     <div class="col-md-6 mb-2">
@@ -379,7 +371,6 @@
             </div>
         </div>
     </div>
-
     <!-- بطاقة 2: إجمالي العملاء -->
     <div class="col-md-6 mb-2">
         <div class="p-3 rounded shadow-sm d-flex justify-content-between align-items-center" style="background-color: #ffff;">
@@ -399,7 +390,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 @push('styles')
 <style>
@@ -456,7 +446,6 @@
   transition: all 0.1s ease;
   z-index: 9999;
 }
-
   .top-table {
   font-family: 'Almarai', sans-serif;
   font-size: 14px;
@@ -478,17 +467,14 @@
   padding: 14px 16px;        
   border-top: 1px solid #eee;
 }
-
 .top-table th {
   background-color: #250059;
   color: #fff;
   font-weight: bold;
 }
-
 .top-table tr {
   transition: background 0.2s;
 }
-
 .top-table tbody tr:hover {
   background-color: #f6f6fa; 
 }
@@ -496,7 +482,6 @@
 .top-table tbody tr:first-child th {
   color: #333 !important;
 }
-
   .top-table th,
   .top-table td {
     vertical-align: middle;
@@ -512,7 +497,6 @@
     font-size: 13px;
     color: #444;
   }
-
  .rank-circle {
   display: inline-block;
   width: 22px;
@@ -525,19 +509,16 @@
   margin-left: 6px;
   border: 1px solid #ccc;
 }
-
 .rank-1 {
   color: #DAA520;
   border-color: #DAA520;
   background-color: #fff8e1;
 }
-
 .rank-2 {
   color: #888;
   border-color: #888;
   background-color: #f2f2f2;
 }
-
 .rank-3 {
   color: #b87333;
   border-color: #b87333;
@@ -559,17 +540,17 @@
 .highcharts-tooltip text {
   filter: none !important;
 }
-    .dot {
+.dot {
         width: 10px;
         height: 10px;
         border-radius: 50%;
         display: inline-block;
         margin-inline-end: 6px;
     }
-    .supplier-legend-label {
+ .supplier-legend-label {
     font-size: 8px;
 }
-    .chart-legend {
+.chart-legend {
         display: flex;
         justify-content: center;
         gap: 15px;
@@ -577,7 +558,7 @@
         font-size: 12px;
         color: #666;
     }
-    .supplier-legend-label {
+.supplier-legend-label {
     font-size: 12px;
 }
 </style>
@@ -889,14 +870,12 @@ Highcharts.mapChart('sa-map-container', {
       fontFamily: 'Almarai, sans-serif'
     }
   },
-
   title: { text: '' },
   subtitle: { text: '' },
   mapNavigation: { enabled: false },
   credits: { enabled: false },
   exporting: { enabled: false },
   legend: { enabled: false },
-
  tooltip: {
   useHTML: true,
   formatter: function () {
@@ -912,8 +891,7 @@ let html = `
     <div style="font-size: 18px; font-weight: bold; color: #7514C0; margin-bottom: 0;">
       ${point.value || 0}
     </div>
-    <div style="height:1px; width:100%; background:#e0e0e0; margin:10px 0 14px 0; padding:0;"></div>
-`;
+    <div style="height:1px; width:100%; background:#e0e0e0; margin:10px 0 14px 0; padding:0;"></div>`;
     if (point.details) {
       const entries = Object.entries(point.details);
       html += `<div style="display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 10px; font-size: 13px; text-align: center;">`;
@@ -926,12 +904,10 @@ let html = `
       }
       html += `</div>`;
     }
-
     html += `</div>`;
     return html;
   }
 },
-
   colorAxis: {
     min: 0,
     max: 250,
@@ -942,7 +918,6 @@ let html = `
       [1, '#7514C0']
     ]
   },
-
   series: [{
     data: [
       {
@@ -1021,7 +996,6 @@ Chart.register({
     }
   }
 });
-
 const circleOptions = (completed, total, color, labelText) => {
   const percentage = (completed / total) * 100;
   return {
@@ -1051,14 +1025,12 @@ const circleOptions = (completed, total, color, labelText) => {
     }
   };
 };
-
 const data = [
   { id: 1, trips: 1201, totalTrips: 1300, pod: 1101, totalPod: 1200, payment: 987, totalPayment: 1050 },
   { id: 2, trips: 1100, totalTrips: 1250, pod: 980, totalPod: 1150, payment: 870, totalPayment: 1000 },
   { id: 3, trips: 1020, totalTrips: 1150, pod: 940, totalPod: 1100, payment: 820, totalPayment: 950 },
   { id: 4, trips: 900, totalTrips: 1000, pod: 860, totalPod: 950, payment: 790, totalPayment: 900 },
 ];
-
 data.forEach(item => {
   new Chart(document.getElementById('tripsChart' + item.id), circleOptions(item.trips, item.totalTrips, '#250059', item.trips.toLocaleString()));
   new Chart(document.getElementById('podChart' + item.id), circleOptions(item.pod, item.totalPod, '#489C7B', item.pod.toLocaleString()));
@@ -1086,8 +1058,7 @@ data.forEach(item => {
             'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
     };
-
-    // 🟢 دالة تحديث شارت الطلبات
+    // دالة تحديث شارت الطلبات
     function updateOrdersChart(startDate, endDate) {
         const labels = [];
         const data = [];
@@ -1101,67 +1072,55 @@ data.forEach(item => {
         ordersChart.data.datasets[0].data = data;
         ordersChart.update();
     }
-
-    // 🟢 دالة تحديث شارت الموردين
+    // دالة تحديث شارت الموردين
     function updateSupplierChart(startDate, endDate) {
         if (endDate.isAfter(moment())) endDate = moment();
-
         const labels = ['Rodud', 'Al Majdouie', 'Supplier A', 'Supplier B', 'Supplier C'];
         const orderedData = [];
         const completedData = [];
-
         for (let i = 0; i < labels.length; i++) {
             orderedData.push(Math.floor(Math.random() * 3000) + 500);
             completedData.push(Math.floor(Math.random() * 2000) + 300);
         }
-
         supplierChart.data.labels = labels;
         supplierChart.data.datasets[0].data = orderedData;
         supplierChart.data.datasets[1].data = completedData;
         supplierChart.update();
     }
-
-    // 🟢 دالة تحديث شارت العملاء
+    // دالة تحديث شارت العملاء
     function updateClientChart(startDate, endDate) {
         if (endDate.isAfter(moment())) endDate = moment();
-
         const labels = ['Client A', 'Client B', 'Client C', 'Client D', 'Client E'];
         const data = [];
-
         for (let i = 0; i < labels.length; i++) {
             data.push(Math.floor(Math.random() * 2000) + 400);
         }
-
         clientChart.data.labels = labels;
         clientChart.data.datasets[0].data = data;
         clientChart.update();
     }
-
-    // ✅ ربط فلتر الطلبات
+    // ربط فلتر الطلبات
     $('#daterange').daterangepicker(commonDatePickerOptions, function(start, end, label) {
         $('#daterange').val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
         updateOrdersChart(start, end);
     }).on('show.daterangepicker', function () {
         if (!$(this).val()) $(this).val(moment().format('MMM D, YYYY'));
     });
-
-    // ✅ ربط فلتر الموردين
+    // ربط فلتر الموردين
     $('#supplier-daterange').daterangepicker(commonDatePickerOptions, function(start, end, label) {
         $('#supplier-daterange').val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
         updateSupplierChart(start, end);
     }).on('show.daterangepicker', function () {
         if (!$(this).val()) $(this).val(moment().format('MMM D, YYYY'));
     });
-
-    // ✅ ربط فلتر العملاء
+    // ربط فلتر العملاء
     $('#client-daterange').daterangepicker(commonDatePickerOptions, function(start, end, label) {
         $('#client-daterange').val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
         updateClientChart(start, end);
     }).on('show.daterangepicker', function () {
         if (!$(this).val()) $(this).val(moment().format('MMM D, YYYY'));
     });
-
-    // ✅ ربط فلاتر المدن والموردين الأعلى (حالياً ما لها شارت مرتبط مباشر)
+    //  ربط فلاتر المدن والموردين الأعلى
     $('#top-cities-daterange, #top-suppliers-daterange').each(function () {
         const input = $(this);
         input.daterangepicker(commonDatePickerOptions, function(start, end, label) {
