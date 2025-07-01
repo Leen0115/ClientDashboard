@@ -1,5 +1,12 @@
 @extends('layouts.client') 
 @section('content')
+<!-- ================================
+    تحميل مكتبات الجافاسكريبت والستايل اللازمة للرسوم البيانية والفلاتر
+    - Chart.js: لرسم الشارتات
+    - daterangepicker: لاختيار نطاق التاريخ
+    - jQuery و moment.js: متطلبات daterangepicker
+    - Highcharts: لرسم خريطة السعودية
+================================ -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
@@ -7,9 +14,16 @@
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-<!-- ملف خريطة السعودية -->
 <script src="https://code.highcharts.com/mapdata/countries/sa/sa-all.js"></script>
+<!-- ================================
+    بداية لوحة البيانات الرئيسية
+    - عنوان الصفحة
+================================ -->
 <h2 class="mb-3" style="color:#00000;">لوحة البيانات</h2>
+<!-- ================================
+    بطاقات إحصائية سريعة لحالات الطلبات
+    - البحث / في رحلة / مكتمل
+================================ -->
 <div class="row mt-3">
     <!-- بطاقة 1: البحث -->
     <div class="col-md-4 mb-2">
@@ -25,7 +39,7 @@
                 <div class="badge rounded px-3 py-2 text-white fw-bold mb-1" style="background-color: #7514C0;">
                     <i class="bi bi-arrow-up-right"></i> +12%
                 </div>
-                <div class="card-text-small mt-1 m-0 p-0" style="color:#51515">مقارنة بالأسبوع الماضي</div>
+                <div class="card-text-small mt-1 m-0 p-0" style="color: #515151">مقارنة بالأسبوع الماضي</div>
             </div>
         </div>
     </div>
@@ -43,7 +57,7 @@
                 <div class="badge rounded px-3 py-2 text-white fw-bold mb-1" style="background-color: #7514C0;">
                     <i class="bi bi-arrow-up-right"></i> +12%
                 </div>
-                <div class="card-text-small mt-1 m-0 p-0" style="color:#51515">مقارنة بالأسبوع الماضي</div>
+                <div class="card-text-small mt-1 m-0 p-0" style="color: #515151">مقارنة بالأسبوع الماضي</div>
             </div>
         </div>
     </div>
@@ -61,11 +75,14 @@
                 <div class="badge rounded px-3 py-2 text-white fw-bold mb-1" style="background-color: #7514C0;">
                     <i class="bi bi-arrow-up-right"></i> +12%
                 </div>
-                <div class="card-text-small mt-1 m-0 p-0" style="color:#51515">مقارنة بالأسبوع الماضي</div>
+                <div class="card-text-small mt-1 m-0 p-0" style="color: #515151">مقارنة بالأسبوع الماضي</div>
             </div>
         </div>  
     </div>
 </div>
+<!-- ================================
+    رسم بياني: نظرة عامة على إجمالي الطلبات مع فلتر التاريخ
+================================ -->
 <!-- نظرة عامة على إجمالي الطلبات -->
     <div class="col-12">
 <div class="p-3 rounded shadow-sm" style="background-color: #fff;min-height: 400px;">
@@ -79,11 +96,8 @@
                 <div class="d-flex align-items-center">
                     <!-- التاريخ -->
    <div class="position-relative me-3" style="width:220px;">
-    <!-- أيقونة التقويم -->
     <i class="bi bi-calendar-event-fill position-absolute" style="top: 50%; right: 12px; transform: translateY(-50%); color: #888;"></i>
-    <!-- سهم -->
     <i class="bi bi-chevron-down position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%); color: #888;"></i>
-    <!-- date range -->
     <input type="text" id="daterange" 
         class="form-control form-control-sm pe-5 ps-4 text-end" 
         placeholder="اختر نطاق التاريخ"
@@ -98,6 +112,9 @@
         <canvas id="ordersChart" style="width:1600px;height:300px"></canvas>
         </div>
     </div>
+    <!-- ================================
+    قسم تحليلات الموردين (شارت أفقي + فلتر تاريخ)
+================================ -->
     <div class="row mt-3">
     <!-- قسم تحليلات الموردين -->
 <div class="col-md-6">
@@ -109,7 +126,7 @@
                     <i class="bi bi-diagram-3-fill ms-2"></i>تحليلات الموردين
                 </h5>
                 <p class="text-muted small mb-0">
-                    هذا المخطط يعرض العدد الإجمالي للطلبات من قبل الموردين خلال الفترة المحددة، مما يساعد على تتبع الاتجاهات وفترات الذروة.
+                    هذا المخطط يعرض العدد الإجمالي للطلبات من قبل الموردين  خلال النطاق الزمني المحدد، مما يساعد على تتبع الاتجاهات وفترات الذروة.
                 </p>
             </div>
             <!-- التاريخ والبوكسين على اليسار -->
@@ -138,6 +155,9 @@
         <canvas id="supplierChart" height="500" width="750"></canvas>
     </div>
 </div>
+<!-- ================================
+    قسم تحليلات العملاء (شارت أفقي + فلتر تاريخ)
+================================ -->
     <!-- قسم تحليلات العملاء -->
   <div class="col-md-6">
   <div class="p-3 rounded shadow-sm min-height: 600px;" style="background-color: #fff;">
@@ -170,6 +190,12 @@
   </div>
 </div>
 </div>
+<!-- ================================
+    أعلى المدن والعملاء
+    - جدول المدن والعملاء
+    - خريطة السعودية التفاعلية
+    - فلتر التاريخ
+================================ -->
 <!-- أعلى المدن والعملاء -->
 <div class="col-12 mt-3">
   <div class="p-3 rounded shadow-sm mb-4" style="background-color: #fff; min-height: 600px;">
@@ -270,6 +296,11 @@
       </div>
     </div>
   </div>
+  <!-- ================================
+    أعلى ٤ موردين 
+    - لكل مورد: الرحلات المكتملة، إثباتات التسليم، أوامر الدفع
+    - فلتر التاريخ
+================================ -->
   <!-- أعلى ٤ موردين -->
 <div class="col-12 mt-3">
   <div class="p-3 rounded shadow-sm mb-4" style="background-color: #fff; min-height: 600px;">
@@ -335,7 +366,7 @@
      <div class="mb-2 mt-2" style="font-size: 14px;">أوامر الدفع</div>
                   <canvas id="paymentChart{{ $supplier['id'] }}" height="100" width="100" style="display: block; margin: 0 auto;"></canvas>
                   <div class="d-flex flex-column align-items-center mt-2">
-                    <div class="supplier-legend-label mt-2"><span class="dot" style="background-color:#e4e4e4;"></span>لم تُنشأ</div>
+                    <div class="supplier-legend-label mt-2"><span class="dot" style="background-color:#e4e4e4;"></span>لم تنشأ</div>
                     <div class="supplier-legend-label mt-1"><span class="dot" style="background-color:#7514C0;"></span>تم الإنشاء</div>
                   </div>
                 </div>
@@ -350,6 +381,9 @@
     </div>
   </div>
 </div>
+<!-- ================================
+    بطاقات إجمالي الموردين والعملاء
+================================ -->
   <div class="row mt-3">
     <!-- بطاقة 1: إجمالي الموردين -->
     <div class="col-md-6 mb-2">
@@ -365,7 +399,7 @@
                 <div class="badge rounded px-3 py-2 text-white fw-bold mb-1" style="background-color: #7514C0;">
                     <i class="bi bi-arrow-up-right"></i> +12%
                 </div>
-                <div class="card-text-small mt-1 m-0 p-0" style="color:#51515">مقارنة بالأسبوع الماضي</div>
+                <div class="card-text-small mt-1 m-0 p-0" style="color: #515151">مقارنة بالأسبوع الماضي</div>
             </div>
         </div>
     </div>
@@ -383,7 +417,7 @@
                 <div class="badge rounded px-3 py-2 text-white fw-bold mb-1" style="background-color: #7514C0;">
                     <i class="bi bi-arrow-up-right"></i> +12%
                 </div>
-                <div class="card-text-small mt-1 m-0 p-0" style="color:#51515">مقارنة بالأسبوع الماضي</div>
+                <div class="card-text-small mt-1 m-0 p-0" style="color: #515151">مقارنة بالأسبوع الماضي</div>
             </div>
         </div>
     </div>
@@ -480,12 +514,6 @@
 .top-table tbody tr:first-child th {
   color: #333 !important;
 }
-  .top-table th,
-  .top-table td {
-    vertical-align: middle;
-    padding: 12px 16px;
-    border-top: 1px solid #eee;
-  }
   .client-pill {
     display: inline-block;
     background-color: #f5f5f5;
@@ -561,6 +589,7 @@
 @push('scripts')
 <script>
     $(function () {
+       // 1. رسم شارت إجمالي الطلبات
     const ctx = document.getElementById('ordersChart').getContext('2d');
     const ordersChart = new Chart(ctx, {
         type: 'bar',
@@ -627,7 +656,7 @@
                 x: {
                     grid: { display: false },
                     ticks: {
-                        font: { family: 'Almari', size: 12 },
+                        font: { family: 'Almarai', size: 12 },
                         color: '#666'
                     }
                 },
@@ -635,13 +664,14 @@
                     beginAtZero: true,
                     grid: { color: '#f0f0f0' },
                     ticks: {
-                        font: { family: 'Almari', size: 12 },
+                        font: { family: 'Almarai', size: 12 },
                         color: '#666'
                     }
                 }
             }
         }
     });
+     // 2. رسم شارت الموردين
 const supplierChartCtx = document.getElementById('supplierChart').getContext('2d');
 const supplierChart = new Chart(supplierChartCtx, {
     type: 'bar',
@@ -673,7 +703,7 @@ const supplierChart = new Chart(supplierChartCtx, {
                 position: 'top',
                 labels: {
                     font: { family: 'Almarai', size: 12 },
-                    color: '#515151',
+                    color: ' #515151',
                     usePointStyle: true,
                     pointStyle: 'circle',
                     padding: 50
@@ -745,14 +775,14 @@ const supplierChart = new Chart(supplierChartCtx, {
                 grid: { display: true },
                 ticks: {
 font: { family: 'Almarai', size: 12 },
-                    color: '#515151'
+                    color: ' #515151'
                 }
             }
         }
     }
 });
-   const clientChartCtx = document.getElementById('clientChart').getContext('2d');
-
+// 3. رسم شارت العملاء
+const clientChartCtx = document.getElementById('clientChart').getContext('2d');
 const clientChart = new Chart(clientChartCtx, {
     type: 'bar',
     data: {
@@ -776,7 +806,7 @@ const clientChart = new Chart(clientChartCtx, {
                 position: 'top',
                 labels: {
                     font: { family: 'Almarai', size: 12 },
-                    color: '#515151',
+                    color: ' #515151',
                     usePointStyle: true,
                     pointStyle: 'circle',
                     padding: 50
@@ -850,12 +880,13 @@ const clientChart = new Chart(clientChartCtx, {
                 grid: { display: true },
                 ticks: {
                     font: { family: 'Almarai', size: 12 },
-                    color: '#515151'
+                    color: ' #515151'
                 }
             }
         }
     }
 });
+// 4. رسم خريطة السعودية 
 Highcharts.mapChart('sa-map-container', {
   chart: {
     map: 'countries/sa/sa-all',
@@ -964,6 +995,7 @@ let html = `
     borderWidth: 1
   }]
 });
+// 5. رسم الدوائر الصغيرة للموردين 
 Chart.register({
   id: 'centerText',
   beforeDraw: function(chart) {
@@ -1012,7 +1044,7 @@ const circleOptions = (completed, total, color, labelText) => {
       elements: {
         center: {
           text: labelText,
-          color: '#515151',
+          color: ' #515151',
           fontStyle: 'Almarai',
           maxFontSize: 16
         }
@@ -1031,8 +1063,10 @@ data.forEach(item => {
   new Chart(document.getElementById('podChart' + item.id), circleOptions(item.pod, item.totalPod, '#489C7B', item.pod.toLocaleString()));
   new Chart(document.getElementById('paymentChart' + item.id), circleOptions(item.payment, item.totalPayment, '#7514C0', item.payment.toLocaleString()));
 });
+// 6. خيارات فلتر التاريخ الموحد لجميع الفلاتر
+const isArabic = document.documentElement.lang === 'ar' || document.documentElement.dir === 'rtl';
  const commonDatePickerOptions = {
-        opens: 'left',
+        opens: isArabic ? 'left' : 'right',
         autoUpdateInput: false,
         locale: {
             format: 'MMM D, YYYY',
@@ -1053,6 +1087,7 @@ data.forEach(item => {
             'الشهر الماضي': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
     };
+    // 7. دوال تحديث بيانات الشارتات عند تغيير التاريخ
     // دالة تحديث شارت الطلبات
     function updateOrdersChart(startDate, endDate) {
         const labels = [];
@@ -1094,6 +1129,7 @@ data.forEach(item => {
         clientChart.data.datasets[0].data = data;
         clientChart.update();
     }
+    // 8. ربط فلاتر التاريخ بالشارتات والجداول
     // ربط فلتر الطلبات
     $('#daterange').daterangepicker(commonDatePickerOptions, function(start, end, label) {
         $('#daterange').val(label === 'اليوم' || label === 'أمس' ? start.format('MMM D, YYYY') : `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`);
