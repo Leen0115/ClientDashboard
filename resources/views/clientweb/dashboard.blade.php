@@ -148,8 +148,7 @@
           <i class="bi bi-people-fill ms-2"></i>تحليلات العملاء
         </h5>
         <p class="text-muted small mb-0">
-          هذا المخطط يعرض العدد الإجمالي للطلبات من قبل العملاء خلال الفترة المحددة، مما يساعد على تتبع النشاط.
-        </p>
+يعرض هذا المخطط العدد الإجمالي لطلبات العملاء خلال النطاق الزمني المحدد، مما يساهم في تتبع النشاط وتحليله.        </p>
       </div>
       <!-- التاريخ وإجمالي الطلبات على اليسار -->
       <div style="min-height: 150px;">
@@ -182,7 +181,7 @@
             <i class="bi bi-bar-chart-line-fill"style="color: #515151;font-size: 18px;"></i> أعلى المدن والعملاء
           </h5>
           <p class="text-muted small mb-0">
-            يعرض هذا المربع إجمالي الطلبات وأهم عملاء الرحلات حسب المدن.
+            يعرض هذا المربع إجمالي الطلبات وأهم العملاء حسب المدن.
           </p>
         </div>
         <!-- فلتر التاريخ -->
@@ -301,8 +300,7 @@
             ['name' => 'ردود للخدمات اللوجستية', 'id' => 1],
             ['name' => 'المجدوعي للخدمات اللوجستية', 'id' => 2],
             ['name' => 'XYZ للخدمات اللوجستية', 'id' => 3],
-            ['name' => 'ABC للخدمات اللوجستية', 'id' => 4],
-        ];
+            ['name' => 'ABC للخدمات اللوجستية', 'id' => 4],];
     @endphp
     <div class="row">
       @foreach($suppliers as $index => $supplier)
@@ -394,7 +392,7 @@
 @push('styles')
 <style>
      body, * {
-        font-family: 'Almrai', sans-serif;
+        font-family: 'Almarai', sans-serif;
     }
     .icon-style { 
         font-size: 2rem; }
@@ -447,7 +445,7 @@
   z-index: 9999;
 }
   .top-table {
-  font-family: 'Almarai', sans-serif;
+  font-family: 'Almarai';
   font-size: 14px;
   border-right: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
@@ -547,9 +545,6 @@
         display: inline-block;
         margin-inline-end: 6px;
     }
- .supplier-legend-label {
-    font-size: 8px;
-}
 .chart-legend {
         display: flex;
         justify-content: center;
